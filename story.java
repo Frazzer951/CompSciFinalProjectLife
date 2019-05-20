@@ -1,7 +1,7 @@
 /**
- * story
+ * Story
  */
-public class story {
+public class Story {
 
     
 }

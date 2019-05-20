@@ -1,5 +1,5 @@
 /**
- * person
+ * Person
  */
 public class Person {
 
@@ -7,13 +7,14 @@ public class Person {
     private double income;
     private String name;
     private double bal;
+    private int health;
 
     //Constructor for the Person Class
-    public void person(String name, double bal, double income) {
+    public Person(String name, double bal, double income) {
         this.name = name;
         this.bal = bal;
         this.income = income;
-        int health = 100;
+        health = 100;
 
     }
 
