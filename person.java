@@ -1,10 +1,8 @@
 /**
  * person
  */
-public class person {
 public class Person {
 
-    
     private double income;
     private String name;
     private double bal;
