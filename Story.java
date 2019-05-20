@@ -1,0 +1,7 @@
+/**
+ * Story
+ */
+public class Story {
+
+    
+}

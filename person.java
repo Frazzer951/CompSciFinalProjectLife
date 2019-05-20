@@ -1,7 +1,0 @@
-/**
- * person
- */
-public class person {
-
-    
-}
