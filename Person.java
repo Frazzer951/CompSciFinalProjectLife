@@ -7,14 +7,13 @@ public class Person {
     private double income;
     private String name;
     private double bal;
-    private int health;
+    private static int health = 100;
 
     //Constructor for the Person Class
     public Person(String name, double bal, double income) {
         this.name = name;
         this.bal = bal;
         this.income = income;
-        health = 100;
 
     }
 
