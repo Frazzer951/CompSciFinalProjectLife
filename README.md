@@ -1,7 +1,12 @@
 # CompSciFinalProjectLife
 # Text Adventure Life
 
+IDEAS:
+    Happiness
+    Family
+
 TODO:
+
     Story Class:
         Add Random Events Based on age range (Getting Robbed, Getting Promotion, Getting Fired, House Burning Down, Ect.)
         Add Job System/Allowance
@@ -10,8 +15,3 @@ TODO:
         Impliment Investment Method
         Add Options for year start
         Health Degredations and Repair
-        
-IDEAS:
-    Happiness
-    Family
-    
