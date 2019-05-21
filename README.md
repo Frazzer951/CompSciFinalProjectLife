@@ -1,40 +1,18 @@
 # CompSciFinalProjectLife
 # Text Adventure Life
 
-difficulty rating
-
-    public int chance
+TODO:
     
-    person class{
-        constructor(String "Name", double balance, double income, 
-        int health, int age)
-        addMoney
-        removeMoney
-        addHealth
-        removeHealth
-        changeIncome
-        payday
-        getBalance
-        getHealth
-        getIncome
-    }
+    Story Class:
+        Add Random Events Based on age range (Getting Robbed, Getting Promotion, Getting Fired, House Burning Down, Ect.)
+        Add Job System/Allowance
+        Add Collage Options
+        Add DEBUG Options
+        Impliment Investment Method
+        Add Options for year start
+        Health Degredations and Repair
+        
+IDEAS:
+    Happiness
+    Family
     
-    story class{
-        yearStart
-            getinformations
-            choices(depending on age)
-                invesments
-                go to places
-                ethical dilema
-                gain health back
-                
-                
-        yearEnd
-            payday
-            random chances
-                get raise .5%
-                lose job .05%
-                getrobbed .05%
-            
-        investment
-    }
