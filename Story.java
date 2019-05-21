@@ -1,6 +1,7 @@
 /**
  * Story
  */
+
 // Add an "end" factor to the game"
 private static int yearsOld = 0;
 private double goodChoice = 0.7;
