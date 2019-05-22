@@ -13,6 +13,7 @@ public class Story {
         this.p = p;
     }
 
+    // Game over check
     public boolean gameOver() {
         if (age >= 100 || p.getHealth() <= 0) {
             return true;
@@ -20,31 +21,36 @@ public class Story {
         return false;
     }
 
+    // Year Start Function
     public void yearStart() {
-        // All of Your Choices
+
+        // Prints out needed info
         System.out.println("Your age is " + age);
         System.out.println("Your age group is " + ageGroup);
         System.out.println("Your health is " + p.getHealth());
         System.out.println("Your Balance is " + p.getBal());
     }
 
+    // Year End Function
     public void yearEnd() {
-        // End of Year
 
         // Get Yearly Income Pay
         p.payday();
+        // Adds a year to your age
         age++;
+        // Sets your proper age group
         this.setAgeGroup();
-        ;
 
         // All of the Random Chances
 
     }
 
+    // Function for the investment option in yearStart function
     private void invest(double amt) {
         // Investment Function
     }
 
+    // Sets persons age group to the proper age group depending on age
     private void setAgeGroup() {
         if (age >= 12 && age < 18) {
             Story.ageGroup = "TEEN";
