@@ -12,6 +12,7 @@ public class Run {
         Scanner input = new Scanner(System.in);
         System.out.println("Please enter your name : ");
         String s = input.next(); // getting a String value
+        input.close();
 
         // Creates Person with name starting with 0 cash and 0 income
         Person p    = new Person(s, 0.0, 0.0);

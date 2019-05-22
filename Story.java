@@ -79,7 +79,7 @@ public class Story {
         }
         if(chance2 <= 5 && chance2 > 1)
         {
-            double moneyStolen = p.getBal * inBetween()       
+            double moneyStolen = p.getBal * inBetween();       
         }
     }
 
