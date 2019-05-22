@@ -33,6 +33,14 @@ public class Story {
         System.out.println("Your age group is " + ageGroup);
         System.out.println("Your health is " + p.getHealth());
         System.out.println("Your Balance is " + p.getBal());
+
+        // Once an adult it will ask you if you want to go to college untill you say yes
+        if (ageGroup.equals("ADULT") && inCollege == false) {
+            System.out.println("Do you want to go to college? 1 for yes, 0 for no: ");
+            Scanner college = new Scanner(System.in);
+            String  school  = college.next();
+            college.close();
+        }
     }
 
     // Year End Function
@@ -44,17 +52,10 @@ public class Story {
         age++;
         // Sets your proper age group
         this.setAgeGroup();
-        p.jobChange();
-        p.accidentChance();
-
-        if (ageGroup.equals("ADULT") && inCollege == false) {
-            System.out.println("Do you want to go to college? 1 for yes, 0 for no: ");
-            Scanner college = new Scanner(System.in);
-            String  school  = college.next();
-            college.close();
-        }
-
-        // All of the Random Chances
+        // Change stuff with jobs
+        jobChange();
+        // Random chance accidents
+        accidentChance();
 
     }
 
