@@ -2,16 +2,18 @@
 # Text Adventure Life
 
 IDEAS:
-    Happiness
     Family
 
 TODO:
 
     Story Class:
-        Add Random Events Based on age range (Getting Robbed, Getting Promotion, Getting Fired, House Burning Down, Ect.)
-        Add Job System/Allowance
-        Add Collage Options
-        Add DEBUG Options
-        Impliment Investment Method
-        Add Options for year start
-        Health Degredations and Repair
+        [] Add Random Events Based on age range (Getting Robbed, Getting Promotion, Getting Fired, House Burning Down, Ect.)
+            -We need to have the random evens be based on your age range, and if you have a job or not
+        [] Add Job System/Allowance
+            -You will have an allowance till you are 16, then you must get a job
+        [] Add Collage Option, need to impliment college methos/class that will have an effect on money and happiness and stuff
+        [] Add DEBUG Options (So we can go in and test that it all works)
+        [x] Impliment Investment Method
+        [] Add Options for year start (needs more detail, please put your ideas below)
+            Ideas- 
+        [] Health Degredations and Repair (Add hospitol option when health is low)
