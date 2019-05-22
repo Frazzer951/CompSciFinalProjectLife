@@ -10,6 +10,7 @@ public class Story {
     private static int    age      = 0;
     private static String ageGroup = "CHILD";
     private Person        p;
+    private static boolean inCollege = false;
 
     // Constructor for the Person Class
     public Story(Person p) {
@@ -44,6 +45,13 @@ public class Story {
         // Sets your proper age group
         this.setAgeGroup();
         p.jobChange();
+
+        if(ageGroup.equals("ADULT") && inCollege == false) {
+            System.out.println("Do you want to go to college? 1 for yes, 0 for no: ");
+            Scanner college = new Scanner(System.in);
+            String school = college.next();
+            college.close();
+        }
 
         // All of the Random Chances
 
