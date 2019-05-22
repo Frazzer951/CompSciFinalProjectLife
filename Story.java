@@ -44,6 +44,7 @@ public class Story {
         // Sets your proper age group
         this.setAgeGroup();
         p.jobChange();
+        p.accidentChance();
 
         // All of the Random Chances
 
@@ -77,9 +78,16 @@ public class Story {
             p.removeMoney(50000.0);
             System.out.println("Oh no! Your house burned down, spend $50,000 on a down payment on a new one");
         }
-        if(chance2 <= 5 && chance2 > 1)
+        else if(chance2 <= 5 && chance2 > 1)
         {
-            double moneyStolen = p.getBal * inBetween()       
+            double moneyStolen = p.getBal * inBetween(.5,.10);
+            p.removeMoney(moneyStolen);
+            System.out.println("You were robbed! They took" + moneyStolen + " dollars");       
+        }
+        else if(chance2 > 5 && chance2 <= 10)
+        {
+            p.addMoney(500.0);
+            System.out.println("Today was your lucky day! You found $500 on the floor!");
         }
     }
 
