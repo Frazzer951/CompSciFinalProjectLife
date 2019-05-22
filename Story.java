@@ -10,6 +10,7 @@ public class Story {
     private static int    age      = 0;
     private static String ageGroup = "CHILD";
     private Person        p;
+    private static boolean inCollege = false;
 
     // Constructor for the Person Class
     public Story(Person p) {
@@ -46,6 +47,13 @@ public class Story {
         p.jobChange();
         p.accidentChance();
 
+        if(ageGroup.equals("ADULT") && inCollege == false) {
+            System.out.println("Do you want to go to college? 1 for yes, 0 for no: ");
+            Scanner college = new Scanner(System.in);
+            String school = college.next();
+            college.close();
+        }
+
         // All of the Random Chances
 
     }
@@ -80,6 +88,7 @@ public class Story {
         }
         else if(chance2 <= 5 && chance2 > 1)
         {
+
             double moneyStolen = p.getBal * inBetween(.5,.10);
             p.removeMoney(moneyStolen);
             System.out.println("You were robbed! They took" + moneyStolen + " dollars");       
@@ -88,6 +97,7 @@ public class Story {
         {
             p.addMoney(500.0);
             System.out.println("Today was your lucky day! You found $500 on the floor!");
+
         }
     }
 
