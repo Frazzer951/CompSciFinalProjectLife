@@ -1,6 +1,11 @@
+
 /**
  * Story
  */
+
+import java.lang.Math;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
 
 public class Story {
 
@@ -46,8 +51,16 @@ public class Story {
     }
 
     // Function for the investment option in yearStart function
-    private void invest(double amt) {
-        // Investment Function
+    private void invest(double amt, double chance) {
+
+        double rate = 100.0 / chance;
+
+        double check = Math.random() * 100.0;
+
+        if (chance <= check) {
+            p.addMoney(amt * rate);
+            System.out.println("Your investment has succeded, and you have earned $" + amt / chance + "!");
+        }
     }
 
     // Sets persons age group to the proper age group depending on age
