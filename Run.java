@@ -2,6 +2,7 @@
 /**
  * Run
  */
+
 import java.util.Scanner;
 
 public class Run {
