@@ -1,3 +1,5 @@
+import com.sun.java.util.jar.pack.Package.Class.Method;
+
 /**
  * Person
  */
@@ -8,6 +10,7 @@ public class Person {
     private String     name;
     private double     bal;
     private static int health = 100;
+    private static int happiness = 100;
 
     // Constructor for the Person Class
     public Person(String name, double bal, double income) {
@@ -45,6 +48,14 @@ public class Person {
     // Adds the Income value to the Balance
     public void payday() {
         bal += income;
+    }
+
+    public void addHappiness(int x) {
+        happiness += x;
+    }
+
+    public void removeHappiness(int x) {
+        happiness -= x;
     }
 
     // Returnes the Balance
