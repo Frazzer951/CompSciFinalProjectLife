@@ -1,6 +1,7 @@
 /**
  * Story
  */
+import java.lang.Math;
 
 public class Story {
 
