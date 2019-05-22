@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Run",
+            "request": "launch",
+            "console": "externalTerminal",
+            "mainClass": "Run"
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "console": "externalTerminal",
