@@ -1,15 +1,14 @@
-import com.sun.java.util.jar.pack.Package.Class.Method;
-
 /**
  * Person
  */
+
 public class Person {
 
     // Declares the Variables
     private double     income;
     private String     name;
     private double     bal;
-    private static int health = 100;
+    private static int health    = 100;
     private static int happiness = 100;
 
     // Constructor for the Person Class
@@ -76,5 +75,10 @@ public class Person {
     // Returns Name
     public String getName() {
         return name;
+    }
+
+    // Returns Happiness
+    public int getHappiness() {
+        return happiness;
     }
 }
