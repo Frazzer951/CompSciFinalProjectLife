@@ -46,9 +46,44 @@ public class Story {
         age++;
         // Sets your proper age group
         this.setAgeGroup();
+        p.jobChange();
 
         // All of the Random Chances
 
+    }
+    private void jobChange()
+    {
+        double chance1 = Math.Random() * 100.0;
+        if(chance1 <= 10)
+        {
+            p.changeIncome(p.getIncome += (p.getIncome/10.0));
+            System.out.println("You got a raise for doing well!");
+
+        }
+        else if(chance1 >= 95)
+        {
+            p.changeIncome(0.0);
+            System.out.println("You got fired!");
+        }
+        else if(chance1 >10 && chance1 < 15)
+        {
+            p.changeIncome(p.getIncome -= (p.getIncome/10.0));
+            System.out.println("You made a bad call at work, and your pay has been docked");
+        }
+    }
+
+    private void accidentChance()
+    {
+        double chance2 = Math.Random() * 100.0;
+        if(chance2 <= 1)
+        {
+            p.removeMoney(50000.0);
+            System.out.println("Oh no! Your house burned down, spend $50,000 on a down payment on a new one");
+        }
+        if(chance2 <= 5 && chance2 > 1)
+        {
+            double moneyStolen = p.getBal * inBetween()       
+        }
     }
 
     // Function for the investment option in yearStart function
