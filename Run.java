@@ -24,7 +24,7 @@ public class Run {
         life.yearStart();
     }
 
-    public double inBetween(double min, double max) {
+    public static double inBetween(double min, double max) {
         return (Math.random() * ((max - min) + 1)) + min;
     }
 }

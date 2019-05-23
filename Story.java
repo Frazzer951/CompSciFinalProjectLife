@@ -3,6 +3,7 @@
  * Story
  */
 
+import java.util.Scanner;
 import java.lang.Math;
 
 public class Story {
@@ -28,19 +29,38 @@ public class Story {
     // Year Start Function
     public void yearStart() {
 
+        // Makes new Scanner Class
+        Scanner Answers = new Scanner(System.in);
+
         // Prints out needed info
         System.out.println("Your age is " + age);
         System.out.println("Your age group is " + ageGroup);
         System.out.println("Your health is " + p.getHealth());
         System.out.println("Your Balance is " + p.getBal());
 
-        // Once an adult it will ask you if you want to go to college untill you say yes
-        if (ageGroup.equals("ADULT") && inCollege == false) {
-            System.out.println("Do you want to go to college? 1 for yes, 0 for no: ");
-            Scanner college = new Scanner(System.in);
-            String  school  = college.next();
-            college.close();
+        // Investment Choice
+        int chance = (int) Math.random() * 100;
+        System.out.println("You have the oppertunity to invest you money with a " + chance
+                + "chance of success, do you want to invest? Type '1' for yes, and '0' for no: ");
+        String answer = Answers.next();
+        if (answer.equals("1")) {
+            System.out.println("How much would you like to invest, you have $" + p.getBal() + " in you bank account");
+            int amt = Answers.nextInt();
+
+            invest(amt, chance);
+
         }
+
+        // Once an adult it will ask you if you want to go to college untill you say yes
+        if (age >= 18 && inCollege == false) {
+            System.out.println("Do you want to go to college? Type '1' for yes, and '0' for no: ");
+            String school = Answers.next();
+            if (school.equals("1")) {
+                inCollege = true;
+            }
+        }
+        // Closes the scanner class
+        Answers.close();
     }
 
     // Year End Function
@@ -60,28 +80,29 @@ public class Story {
     }
 
     private void jobChange() {
-        double chance1 = Math.Random() * 100.0;
+        double chance1 = Math.random() * 100.0;
+        double inc     = p.getIncome();
         if (chance1 <= 10) {
-            p.changeIncome(p.getIncome += (p.getIncome / 10.0));
+            p.changeIncome(inc += (inc / 10.0));
             System.out.println("You got a raise for doing well!");
 
         } else if (chance1 >= 95) {
             p.changeIncome(0.0);
             System.out.println("You got fired!");
         } else if (chance1 > 10 && chance1 < 15) {
-            p.changeIncome(p.getIncome -= (p.getIncome / 10.0));
+            p.changeIncome(inc -= (inc / 10.0));
             System.out.println("You made a bad call at work, and your pay has been docked");
         }
     }
 
     private void accidentChance() {
-        double chance2 = Math.Random() * 100.0;
+        double chance2 = Math.random() * 100.0;
         if (chance2 <= 1) {
             p.removeMoney(50000.0);
             System.out.println("Oh no! Your house burned down, spend $50,000 on a down payment on a new one");
         } else if (chance2 <= 5 && chance2 > 1) {
 
-            double moneyStolen = p.getBal * inBetween(.5, .10);
+            double moneyStolen = p.getBal() * Run.inBetween(.5, .10);
             p.removeMoney(moneyStolen);
             System.out.println("You were robbed! They took" + moneyStolen + " dollars");
         } else if (chance2 > 5 && chance2 <= 10) {
