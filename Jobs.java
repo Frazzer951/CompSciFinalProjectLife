@@ -1,0 +1,7 @@
+/**
+ * Jobs
+ */
+
+public class Jobs {
+
+}
