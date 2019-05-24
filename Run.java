@@ -17,7 +17,9 @@ public class Run {
 
         // Creates Person with name starting with 0 cash and 0 income
         Person p    = new Person(s, 0.0, 0.0);
-        Story  life = new Story(p);
+        Jobs   work = new Jobs(p);
+        Story  life = new Story(p, work);
+
         System.out.println("Your Health is at " + p.getHealth());
         life.yearStart();
         life.yearEnd();

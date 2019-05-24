@@ -9,13 +9,14 @@ import java.lang.Math;
 public class Story {
 
     private Person        p;
+    private Jobs          career;
     private static int    age      = 0;
     private static String ageGroup = "CHILD";
 
     // Constructor for the Person Class
-    public Story(Person p) {
-        this.p = p;
-        Jobs career = new Jobs(p);
+    public Story(Person p, Jobs career) {
+        this.p      = p;
+        this.career = career;
     }
 
     // Game over check
@@ -57,8 +58,8 @@ public class Story {
             System.out.println("Would you like to go to the club? '1' for yes, and '0' for no: ");
             String club = Answers.next();
             if (club.equals('1')) {
-                System.out.println("You went to the club with your friends and took " + Run.inBetween(6, 15)
-                        + " shots of Everclear and threw up in the bathroom.");
+                System.out.println("You went to the club with your friends and drank " + Run.inBetween(1, 20)
+                        + " bottles of beer and threw up in the bathroom.");
             }
         }
 
@@ -81,12 +82,15 @@ public class Story {
                 }
             }
         }
-        /*
-         * //Applying for a job if(!employed) { System.out.
-         * println("Would you like to apply for a job? '1' for yes, and '0' for no: ");
-         * String apply = Answers.next(); if(apply.equals("1")) { employed = true; //
-         * change when jobs class is finished } }
-         */
+
+        // Applying for a job
+        if (!career.hasJob()) {
+            System.out.println("Would you like to apply for a job? '1' for yes, and '0' for no: ");
+            String apply = Answers.next();
+            if (apply.equals("1")) {
+                career.jobOptions();
+            }
+        }
 
         // Once an adult it will ask you if you want to go to college untill you say yes
         // Todo Give price amount option
