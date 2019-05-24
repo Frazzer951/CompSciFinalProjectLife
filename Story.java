@@ -120,21 +120,6 @@ public class Story {
         this.setAgeGroup();
     }
 
-    private void accidentChance() {
-        double chance2 = Math.random() * 100.0;
-        if (chance2 <= 1) {
-            p.removeMoney(50000.0);
-            System.out.println("Oh no! Your house burned down, spend $50,000 on a down payment on a new one");
-        } else if (chance2 <= 5 && chance2 > 1) {
-            double moneyStolen = p.getBal() * Run.inBetween(.5, .10);
-            p.removeMoney(moneyStolen);
-            System.out.println("You were robbed! They took" + moneyStolen + " dollars");
-        } else if (chance2 > 5 && chance2 <= 10) {
-            p.addMoney(500.0);
-            System.out.println("Today was your lucky day! You found $500 on the floor!");
-        }
-    }
-
     // Function for the investment option in yearStart function
     private void invest(double amt, double chance) {
 

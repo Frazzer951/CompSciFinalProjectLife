@@ -13,6 +13,8 @@ TODO:
         [x] Impliment Investment Method
         [] Add Options for year start (needs more detail, please put your ideas below)
             Ideas- 
-        [x (hospital done)] Health Degredations and Repair (Add hospital option when health is low)
-        [] Jobs Class
+        [/] Health Degredations and Repair (Add hospital option when health is low) 
+                Hospital option finish
+        [x] Jobs Class
             Add what methods you think we will need here
+        [] Add more option in the job class
