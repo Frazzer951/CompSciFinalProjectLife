@@ -39,19 +39,21 @@ public class Story {
         System.out.println("Your Balance is " + p.getBal());
 
         // Investment Choice
-        int chance = (int) Math.random() * 100;
-        System.out.println("You have the oppertunity to invest you money with a " + chance
-                + "chance of success, do you want to invest? Type '1' for yes, and '0' for no: ");
-        String answer = Answers.next();
-        if (answer.equals("1")) {
-            System.out.println("How much would you like to invest, you have $" + p.getBal() + " in you bank account");
-            int amt = Answers.nextInt();
+        if (age >= 16) {
+            int chance = (int) Math.random() * 100;
+            System.out.println("You have the opportunity to invest your money with a " + chance
+                    + "chance of success, do you want to invest? Type '1' for yes, and '0' for no: ");
+            String answer = Answers.next();
+            if (answer.equals("1")) {
+                System.out.println("How much would you like to invest, you have $" + p.getBal() + " in your bank account");
+                int amt = Answers.nextInt();
 
-            invest(amt, chance);
+                invest(amt, chance);
 
+            }
         }
 
-        // Once an adult it will ask you if you want to go to college untill you say yes
+        // Once an adult it will ask you if you want to go to college until you say yes
         if (age >= 18 && inCollege == false) {
             System.out.println("Do you want to go to college? Type '1' for yes, and '0' for no: ");
             String school = Answers.next();
