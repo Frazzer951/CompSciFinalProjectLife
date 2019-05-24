@@ -12,6 +12,7 @@ public class Story {
     private static int     age       = 0;
     private static String  ageGroup  = "CHILD";
     private static boolean inCollege = false;
+//    private static boolean employed = false;
 
     // Constructor for the Person Class
     public Story(Person p) {
@@ -52,6 +53,33 @@ public class Story {
 
             }
         }
+
+        //Suicide Option
+        if (p.getHappiness() <= 20) {
+            System.out.println("You are reaching a state of depression. Would you like to kill yourself? '1' for yes, and '0' for no: ");
+            String suicide = Answers.next();
+            if(suicide.equals('1')) {
+                int suicideOption = Run.inBetween(0, 4);
+                if(suicideOption == 1) {
+                    System.out.println("You couldn't take the pain anymore. You have decided to go outside and walk into oncoming traffic and get hit by a double-decker bus. You were sent to the hospital but didn't survive.");
+                } else if (suicideOption == 2) {
+                    System.out.println("You have decided to take the easy way out. You go to a local Walmart store and buy 10 feet of rope. You come back home and tie a noose on your ceiling fan. You kick off the chair you stand on and then suddenly everything goes black.");
+                } else if (suicideOption == 3) {
+                    System.out.println("You have made the choice to take the easy way out. You go to your kitchen and grab a chef knife from the drawer. You walk to your bathroom and sit in the tub. Tears fill your eyes as you do the deed of slitting your wrists until you are no more.");
+                }
+            }
+        }
+/*        
+        //Applying for a job
+        if(!employed) {
+            System.out.println("Would you like to apply for a job? '1' for yes, and '0' for no: ");
+            String apply = Answers.next();
+            if(apply.equals("1")) {
+                employed = true; // change when jobs class is finished
+            }
+        }
+*/
+
 
         // Once an adult it will ask you if you want to go to college until you say yes
         if (age >= 18 && inCollege == false) {
