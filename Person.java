@@ -12,6 +12,7 @@ public class Person {
     private static int     happiness   = 100;
     private static boolean isMarried   = false;
     private static int     numChildren = 0;
+    private static boolean college     = false;
 
     // Constructor for the Person Class
     public Person(String name, double bal, double income) {
@@ -56,6 +57,15 @@ public class Person {
 
     public void removeHappiness(int x) {
         happiness -= x;
+    }
+
+    public void wentToCollege(double price) {
+        bal     -= price;
+        college  = true;
+    }
+
+    public boolean getCollege() {
+        return college;
     }
 
     // Returnes the Balance
