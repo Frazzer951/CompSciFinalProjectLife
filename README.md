@@ -17,3 +17,5 @@ TODO:
         [] Add Options for year start (needs more detail, please put your ideas below)
             Ideas- 
         [] Health Degredations and Repair (Add hospitol option when health is low)
+        [] Jobs Class
+            Add what methods you think we will need here
