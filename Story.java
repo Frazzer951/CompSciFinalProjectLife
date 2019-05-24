@@ -43,13 +43,14 @@ public class Story {
         if (age >= 16) {
             int chance = (int) Math.random() * 100;
             System.out.println("You have the opportunity to invest your money with a " + chance
-                    + "chance of success, do you want to invest? Type '1' for yes, and '0' for no: ");
+                    + "% chance of success, do you want to invest? Type '1' for yes, and '0' for no: ");
             String answer = Answers.next();
             if (answer.equals("1")) {
                 System.out.println(
                         "How much would you like to invest, you have $" + p.getBal() + " in your bank account");
                 int amt = Answers.nextInt();
 
+                p.removeMoney(amt);
                 invest(amt, chance);
 
             }
@@ -68,8 +69,8 @@ public class Story {
             System.out.println(
                     "You are reaching a state of depression. Would you like to kill yourself? '1' for yes, and '0' for no: ");
             String suicide = Answers.next();
-            if (suicide.equals('1')) {
-                int suicideOption = Run.inBetween(0.0, 4.0);
+            if (suicide.equals("1")) {
+                int suicideOption = (int) Run.inBetween(0, 4);
                 if (suicideOption == 1) {
                     System.out.println(
                             "You couldn't take the pain anymore. You have decided to go outside and walk into oncoming traffic and get hit by a double-decker bus. You were sent to the hospital but didn't survive.");
@@ -84,10 +85,10 @@ public class Story {
         }
 
         // Applying for a job
-        if (!career.hasJob()) {
+        if (age >= 16 &&!career.hasJob()) {
             System.out.println("Would you like to apply for a job? '1' for yes, and '0' for no: ");
-            String apply = Answers.next();
-            if (apply.equals("1")) {
+            int apply = Answers.nextInt();
+            if (apply == 1) {
                 career.jobOptions();
             }
         }
