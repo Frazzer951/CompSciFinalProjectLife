@@ -93,7 +93,7 @@ public class Story {
      * System.out.
      * println("Oh no! Your house burned down, spend $50,000 on a down payment on a new one"
      * ); } else if (chance2 <= 5 && chance2 > 1) { double moneyStolen = p.getBal()
-     * * Run.inBetween(.5, .10); p.removeMoney(moneyStolen);
+     * * Run.inBetween(.05, .10); p.removeMoney(moneyStolen);
      * System.out.println("You were robbed! They took" + moneyStolen + " dollars");
      * } else if (chance2 > 5 && chance2 <= 10) { p.addMoney(500.0);
      * System.out.println("Today was your lucky day! You found $500 on the floor!");
@@ -121,6 +121,49 @@ public class Story {
             Story.ageGroup = "ADULT";
         } else if (age >= 50) {
             Story.ageGroup = "ELDER";
+        }
+    }
+
+    // Provides person with 2 choice to repair health
+    // Either go to a safe hopistal (more expensive) or a sketchy hospital (less expensive)
+    // If they choose sketchy hospital they have a chance for it go wrong and lose more health
+    public void goToHospital()
+    {
+        int healthNeeded = 100 - p.getHealth();
+        double cashNormal = healthNeeded * 100.0 * Run.inBetween(1, 10);
+        System.out.println("It will cost $" + cashNormal + "to choose a safe hospital");
+        double cashGhetto = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad/100.0);         
+        System.out.println("or");
+        double chanceItsBad = 100.0 *Math.random();
+        System.out.println("It will cost $" + cashGhetto + "to choose a sketchy hospital, BUT things may not go as planned... /n There is a" + chanceItsBad + "% chance it will go wrong");
+        Scanner hospitalChoice = new Scanner(System.in);
+        System.out.println("Please type: safe or sketchy or none");
+        String choice = hospitalChoice.next();
+        hospitalChoice.close();
+        if(choice.equals("safe"))
+        {
+            p.removeMoney(cashNormal);
+            System.out.println("Your health has been fully repaired!")
+            p.addHealth(healthNeeded);
+        }
+        else if(choice.equals("sketchy"))
+        {
+            p.removeMoney(cashGhetto);
+            if((100.0 * Math.Random()) <= chanceItsBad)
+            {
+                p.removeHealth(p.getHealth() /2);
+                System.out.println("Oh no! The procedure did not go as expected!");
+            }
+            else
+            {
+                p.addHealth(healthNeeded);
+                System.out.println("You got lucky! Everything went alright");
+            }
+             
+        }
+        else
+        {
+            System.out.println("You chose not to go to the hospital this year");
         }
     }
 }
