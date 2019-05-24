@@ -59,7 +59,7 @@ public class Story {
             System.out.println("You are reaching a state of depression. Would you like to kill yourself? '1' for yes, and '0' for no: ");
             String suicide = Answers.next();
             if(suicide.equals('1')) {
-                int suicideOption = Run.inBetween(0, 4);
+                int suicideOption = Run.inBetween(0.0, 4.0);
                 if(suicideOption == 1) {
                     System.out.println("You couldn't take the pain anymore. You have decided to go outside and walk into oncoming traffic and get hit by a double-decker bus. You were sent to the hospital but didn't survive.");
                 } else if (suicideOption == 2) {
