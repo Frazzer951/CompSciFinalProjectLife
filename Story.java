@@ -8,9 +8,9 @@ import java.lang.Math;
 
 public class Story {
 
+    private Person         p;
     private static int     age       = 0;
     private static String  ageGroup  = "CHILD";
-    private Person         p;
     private static boolean inCollege = false;
 
     // Constructor for the Person Class
