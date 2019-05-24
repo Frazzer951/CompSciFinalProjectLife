@@ -5,18 +5,19 @@
 public class Person {
 
     // Declares the Variables
-    private double     income;
-    private String     name;
-    private double     bal;
-    private static int health    = 100;
-    private static int happiness = 100;
+    private double         income;
+    private String         name;
+    private double         bal;
+    private static int     health      = 100;
+    private static int     happiness   = 100;
+    private static boolean isMarried   = false;
+    private static int     numChildren = 0;
 
     // Constructor for the Person Class
     public Person(String name, double bal, double income) {
         this.name   = name;
         this.bal    = bal;
         this.income = income;
-
     }
 
     // Adds Money to Balance
@@ -80,5 +81,15 @@ public class Person {
     // Returns Happiness
     public int getHappiness() {
         return happiness;
+    }
+
+    // Returns marriage status
+    public boolean marriageStatus() {
+        return isMarried;
+    }
+
+    // Returns the number of children
+    public int getChildren() {
+        return numChildren;
     }
 }
