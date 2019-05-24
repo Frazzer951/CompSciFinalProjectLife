@@ -8,10 +8,9 @@ import java.lang.Math;
 
 public class Story {
 
-    private Person         p;
-    private static int     age       = 0;
-    private static String  ageGroup  = "CHILD";
-    private static boolean inCollege = false;
+    private Person        p;
+    private static int    age      = 0;
+    private static String ageGroup = "CHILD";
 
     // Constructor for the Person Class
     public Story(Person p) {
@@ -53,13 +52,15 @@ public class Story {
         }
 
         // Once an adult it will ask you if you want to go to college untill you say yes
-        if (age >= 18 && inCollege == false) {
+        // Todo Give price amount option
+        if (age >= 18 && p.getCollege() == false) {
             System.out.println("Do you want to go to college? Type '1' for yes, and '0' for no: ");
             String school = Answers.next();
             if (school.equals("1")) {
-                inCollege = true;
+                p.wentToCollege(0.0);
             }
         }
+
         // Closes the scanner class
         Answers.close();
     }
