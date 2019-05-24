@@ -12,6 +12,7 @@ public class Person {
     private static int     happiness   = 100;
     private static boolean isMarried   = false;
     private static int     numChildren = 0;
+    private static boolean college     = false;
 
     // Constructor for the Person Class
     public Person(String name, double bal, double income) {
@@ -30,12 +31,16 @@ public class Person {
         bal -= x;
     }
 
-    // Adds Health
+    // Adds Health and makes sure it's not over 100
     public void addHealth(int x) {
         health += x;
+        if(health > 100)
+        {
+            this.health = 100;
+        }
     }
 
-    // Removes Health
+    // Removes Health and checks if game over
     public void removeHealth(int x) {
         health -= x;
     }
@@ -50,12 +55,23 @@ public class Person {
         bal += income;
     }
 
+    // Adds Happiness
     public void addHappiness(int x) {
         happiness += x;
     }
 
+    // Remove Happiness
     public void removeHappiness(int x) {
         happiness -= x;
+    }
+
+    public void wentToCollege(double price) {
+        bal     -= price;
+        college  = true;
+    }
+
+    public boolean getCollege() {
+        return college;
     }
 
     // Returnes the Balance
@@ -92,4 +108,5 @@ public class Person {
     public int getChildren() {
         return numChildren;
     }
+    
 }
