@@ -1,9 +1,6 @@
 # CompSciFinalProjectLife
 # Text Adventure Life
 
-IDEAS:
-    Family
-
 TODO:
 
     Story Class:
