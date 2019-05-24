@@ -53,6 +53,13 @@ public class Story {
 
             }
         }
+        if (age >= 18) {
+            System.out.println("Would you like to go to the club? '1' for yes, and '0' for no: ");
+            String club = Answers.next();
+            if(club.equals('1')) {
+                System.out.println("You went to the club with your friends and took " + Run.inBetween(6, 15) + " shots of Everclear and threw up in the bathroom.")
+            }
+        }
 
         //Suicide Option
         if (p.getHappiness() <= 20) {
