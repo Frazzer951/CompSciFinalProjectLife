@@ -34,9 +34,8 @@ public class Person {
     // Adds Health and makes sure it's not over 100
     public void addHealth(int x) {
         health += x;
-        if(health > 100)
-        {
-            this.health = 100;
+        if (health > 100) {
+            health = 100;
         }
     }
 
@@ -108,5 +107,5 @@ public class Person {
     public int getChildren() {
         return numChildren;
     }
-    
+
 }

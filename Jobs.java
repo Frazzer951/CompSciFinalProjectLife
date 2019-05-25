@@ -1,10 +1,14 @@
+
 /**
  * Jobs
  */
 
+import java.util.Scanner;
+
 public class Jobs {
 
     private Person         p;
+    private Scanner        input;
     private static double  jobIncome;
     private static String  jobTitle;
     private static boolean employed = false;
@@ -12,30 +16,30 @@ public class Jobs {
     String[] jobList = { "Carpenter", "Zoologist", "Mason", "Librarian", "Farmer", "Teacher", "Therapist", "IT Manager",
             "Painter", "Receptionist" };
 
-    public Jobs(Person p) {
-        this.p = p;
+    public Jobs(Person p, Scanner input) {
+        this.p     = p;
+        this.input = input;
     }
 
     public void jobOptions() {
         double mul = 1.0;
-        if (p.getCollege == true) {
+        if (p.getCollege() == true) {
             mul = 3.0;
         }
 
-        int choice1 = Run.inBetween(0.0, jobList.length);
-        int choice2 = Run.inBetween(0.0, jobList.length);
-        int choice3 = Run.inBetween(0.0, jobList.length);
+        int choice1 = (int) Run.inBetween(0.0, jobList.length);
+        int choice2 = (int) Run.inBetween(0.0, jobList.length);
+        int choice3 = (int) Run.inBetween(0.0, jobList.length);
 
         double price1 = Run.inBetween(20000.0, 50000.0) * mul;
         double price2 = Run.inBetween(20000.0, 50000.0) * mul;
         double price3 = Run.inBetween(20000.0, 50000.0) * mul;
 
         System.out.println("Here are your job choices.");
-        System.out.println("Choice 1: " + choice1 + " for $" + price1 + " a year");
-        System.out.println("Choice 2: " + choice2 + " for $" + price2 + " a year");
-        System.out.println("Choice 3: " + choice3 + " for $" + price3 + " a year");
+        System.out.println("Choice 1: " + jobList[choice1] + " for $" + price1 + " a year");
+        System.out.println("Choice 2: " + jobList[choice2] + " for $" + price2 + " a year");
+        System.out.println("Choice 3: " + jobList[choice3] + " for $" + price3 + " a year");
 
-        Scanner input = new Scanner(System.in);
         System.out.println("Input the number for your choice 1-3 : ");
 
         boolean madeChoice = false;
@@ -44,21 +48,20 @@ public class Jobs {
             int choice = input.nextInt();
             if (choice == 1) {
                 jobIncome  = price1;
-                jobTitle   = choice1;
+                jobTitle   = jobList[choice1];
                 madeChoice = true;
             } else if (choice == 2) {
                 jobIncome  = price2;
-                jobTitle   = choice2;
+                jobTitle   = jobList[choice2];
                 madeChoice = true;
             } else if (choice == 3) {
                 jobIncome  = price3;
-                jobTitle   = choice3;
+                jobTitle   = jobList[choice3];
                 madeChoice = true;
             } else {
                 System.out.println("You must put a number between 1 and 3");
             }
         }
-        input.close();
 
         p.changeIncome(jobIncome);
 
@@ -68,7 +71,7 @@ public class Jobs {
 
     }
 
-    public Strict jobName() {
+    public String jobName() {
         return jobTitle;
     }
 

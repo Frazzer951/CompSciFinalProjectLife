@@ -10,13 +10,15 @@ public class Story {
 
     private Person        p;
     private Jobs          career;
+    private Scanner       input;
     private static int    age      = 0;
     private static String ageGroup = "CHILD";
 
     // Constructor for the Person Class
-    public Story(Person p, Jobs career) {
+    public Story(Person p, Jobs career, Scanner input) {
         this.p      = p;
         this.career = career;
+        this.input  = input;
     }
 
     // Game over check
@@ -27,85 +29,31 @@ public class Story {
         return false;
     }
 
-    // Year Start Function
     public void yearStart() {
+        // Prints Out Needed Information
+        System.out.println(p.getName() + "\'s health is at " + p.getHealth() + ". \n" + "Your bank balance is "
+                + p.getBal() + ", \n" + "and your age is " + age);
 
-        // Makes new Scanner Class
-        Scanner Answers = new Scanner(System.in);
+        System.out.println("Would You like to do anything this year? Type \'Yes\' or \'No\'");
 
-        // Prints out needed info
-        System.out.println("Your age is " + age);
-        System.out.println("Your age group is " + ageGroup);
-        System.out.println("Your health is " + p.getHealth());
-        System.out.println("Your Balance is " + p.getBal());
+        while (true) {
+            String choice = input.next();
 
-        // Investment Choice
-        if (age >= 16) {
-            int chance = (int) Math.random() * 100;
-            System.out.println("You have the opportunity to invest your money with a " + chance
-                    + "% chance of success, do you want to invest? Type '1' for yes, and '0' for no: ");
-            String answer = Answers.next();
-            if (answer.equals("1")) {
-                System.out.println(
-                        "How much would you like to invest, you have $" + p.getBal() + " in your bank account");
-                int amt = Answers.nextInt();
-
-                p.removeMoney(amt);
-                invest(amt, chance);
-
-            }
-        }
-        if (age >= 18) {
-            System.out.println("Would you like to go to the club? '1' for yes, and '0' for no: ");
-            String club = Answers.next();
-            if (club.equals('1')) {
-                System.out.println("You went to the club with your friends and drank " + Run.inBetween(1, 20)
-                        + " bottles of beer and threw up in the bathroom.");
-            }
-        }
-
-        // Suicide Option
-        if (p.getHappiness() <= 20) {
-            System.out.println(
-                    "You are reaching a state of depression. Would you like to kill yourself? '1' for yes, and '0' for no: ");
-            String suicide = Answers.next();
-            if (suicide.equals("1")) {
-                int suicideOption = (int) Run.inBetween(0, 4);
-                if (suicideOption == 1) {
-                    System.out.println(
-                            "You couldn't take the pain anymore. You have decided to go outside and walk into oncoming traffic and get hit by a double-decker bus. You were sent to the hospital but didn't survive.");
-                } else if (suicideOption == 2) {
-                    System.out.println(
-                            "You have decided to take the easy way out. You go to a local Walmart store and buy 10 feet of rope. You come back home and tie a noose on your ceiling fan. You kick off the chair you stand on and then suddenly everything goes black.");
-                } else if (suicideOption == 3) {
-                    System.out.println(
-                            "You have made the choice to take the easy way out. You go to your kitchen and grab a chef knife from the drawer. You walk to your bathroom and sit in the tub. Tears fill your eyes as you do the deed of slitting your wrists until you are no more.");
+            if (choice.equals("Yes")) {
+                boolean done = false;
+                while (done) {
+                    done = choices();
                 }
+                break;
+            } else if (choice.equals("No")) {
+                break;
             }
+            System.out.println("You must type \'Yes\' or \'No\'");
         }
+    }
 
-        // Applying for a job
-        if (age >= 16 &&!career.hasJob()) {
-            System.out.println("Would you like to apply for a job? '1' for yes, and '0' for no: ");
-            int apply = Answers.nextInt();
-            if (apply == 1) {
-                career.jobOptions();
-            }
-        }
-
-        // Once an adult it will ask you if you want to go to college untill you say yes
-        // Todo Give price amount option
-        if (age >= 18 && p.getCollege() == false) {
-
-            System.out.println("Do you want to go to college? Type '1' for yes, and '0' for no: ");
-            String school = Answers.next();
-            if (school.equals("1")) {
-                p.wentToCollege(0.0);
-            }
-        }
-
-        // Closes the scanner class
-        Answers.close();
+    public boolean choices() {
+        return false;
     }
 
     // Year End Function
@@ -154,23 +102,21 @@ public class Story {
         int    healthNeeded = 100 - p.getHealth();
         double cashNormal   = healthNeeded * 100.0 * Run.inBetween(1, 10);
         System.out.println("It will cost $" + cashNormal + "to choose a safe hospital");
-        double cashGhetto = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
-        System.out.println("or");
         double chanceItsBad = 100.0 * Math.random();
+        double cashGhetto   = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
+        System.out.println("or");
         System.out.println("It will cost $" + cashGhetto
-                + "to choose a sketchy hospital, BUT things may not go as planned... /n There is a" + chanceItsBad
+                + "to choose a sketchy hospital, BUT things may not go as planned... \n There is a" + chanceItsBad
                 + "% chance it will go wrong");
-        Scanner hospitalChoice = new Scanner(System.in);
-        System.out.println("Please type: 'safe' or 'sketchy' or 'none'");
-        String choice = hospitalChoice.next();
-        hospitalChoice.close();
+        System.out.println("Please type: \'safe\' or \'sketchy\' or \'none\'");
+        String choice = input.next();
         if (choice.equals("safe")) {
             p.removeMoney(cashNormal);
             System.out.println("Your health has been fully repaired!");
             p.addHealth(healthNeeded);
         } else if (choice.equals("sketchy")) {
             p.removeMoney(cashGhetto);
-            if ((100.0 * Math.Random()) <= chanceItsBad) {
+            if ((100.0 * Math.random() <= chanceItsBad)) {
                 p.removeHealth(p.getHealth() / 2);
                 System.out.println("Oh no! The procedure did not go as expected!");
             } else {
