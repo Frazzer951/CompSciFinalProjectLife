@@ -21,6 +21,17 @@ public class Story {
         this.input  = input;
     }
 
+    // Sets persons age group to the proper age group depending on age
+    private void setAgeGroup() {
+        if (age >= 12 && age < 18) {
+            Story.ageGroup = "TEEN";
+        } else if (age >= 18 && age < 50) {
+            Story.ageGroup = "ADULT";
+        } else if (age >= 50) {
+            Story.ageGroup = "ELDER";
+        }
+    }
+
     // Game over check
     public boolean gameOver() {
         if (age >= 100 || p.getHealth() <= 0) {
@@ -41,7 +52,7 @@ public class Story {
 
             if (choice.equals("Yes")) {
                 boolean done = false;
-                while (done) {
+                while (!done) {
                     done = choices();
                 }
                 break;
@@ -53,8 +64,52 @@ public class Story {
     }
 
     public boolean choices() {
-        return false;
+
+        boolean choiceMade = false;
+
+        while(choiceMade == false){
+        if (ageGroup.equals("CHILD")) {
+            // Child Choices
+            System.out.println("If you want to play with friends type \'Friends\'");
+            System.out.println("If you want to spend your allowance on candy type \'Candy\'");
+
+        } else if (ageGroup.equals("Teen")) {
+            // Ten Choices
+            System.out.println("If you want to hang out with friends type \'Friends\'");
+            System.out.println("If you want to go to lunch with your friends type \'Lunch\'");
+
+            if (career.hasJob() == false) {
+                System.out.println("If you want to get a job type \'Job\'");
+            }
+
+        } else if (ageGroup.equals("Adult")) {
+            // Adult Choices
+            System.out.println();
+
+            if (career.hasJob() == false) {
+                System.out.println("If you want to get a job type \'Job\'");
+            }
+
+        } else {
+            // Elder Choices
+            System.out.println();
+
+        }
+
+        System.out.println("If you do not want to do anything else type \'Done\'");
+
+        String dec = input.next();
+        if (dec.equals("Yes")) {
+            return false;
+        }
+
+        if (dec.equals("Done")) {
+            return true;
+        }
+        System.out.println("You either didnt enter the proper text, or you entered something that is not a choice, try again.");
     }
+    return true;
+}
 
     // Year End Function
     public void yearEnd() {
@@ -79,17 +134,6 @@ public class Story {
         if (chance <= check) {
             p.addMoney(amt * rate);
             System.out.println("Your investment has succeded, and you have earned $" + amt / chance + "!");
-        }
-    }
-
-    // Sets persons age group to the proper age group depending on age
-    private void setAgeGroup() {
-        if (age >= 12 && age < 18) {
-            Story.ageGroup = "TEEN";
-        } else if (age >= 18 && age < 50) {
-            Story.ageGroup = "ADULT";
-        } else if (age >= 50) {
-            Story.ageGroup = "ELDER";
         }
     }
 
