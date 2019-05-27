@@ -20,6 +20,7 @@ TODO:
         [] Add more option in the job class
 
 Stuff Luke is Doing Right Now:
+
     [x]For begining of year call a choice method that will ask you everything you want to do so you can do multiple things a year
     give option to quit job and have new choices
     add chance to fail job interview and not get a job (the more money you make the harder the job)
@@ -27,8 +28,8 @@ Stuff Luke is Doing Right Now:
     put age in person class so you can add more than one year at a time.
 
 
-Old yearStart:
 
+Old yearStart:
 // Year Start Function
     public void yearStart() {
 
