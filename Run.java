@@ -20,9 +20,13 @@ public class Run {
         Jobs   work = new Jobs(p, input);
         Story  life = new Story(p, work, input);
 
-        life.yearStart();
-        life.yearEnd();
-        life.yearStart();
+        while (!life.gameOver()) {
+            life.yearStart();
+            System.out.print("\033[H\033[2J");
+            life.yearEnd();
+        }
+
+        System.out.println("You have lost the game");
 
         input.close();
     }
