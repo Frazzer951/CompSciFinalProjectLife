@@ -261,36 +261,36 @@ public class Story {
         if(ageGroup.equals("TEEN")) {
             if(Run.inBetween(1.0, 30.0) == 1.0) {
                 System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
-                Person.addMoney(randomMoney);
+                p.addMoney(randomMoney);
             }
             if(Run.inBetween(1.0, 20.0) == 1.0) {
                 System.out.println("Ruh roh! You have been caught doing something naughty by your parents and have been grounded");
-                Person.removeHappiness(Run.inBetween(1.0, 10.0));
+                p.removeHappiness(Run.inBetween(1.0, 10.0));
             }
         }
         if(ageGroup.equals("ADULT")) {
             if(Run.inBetween(1.0, 30.0) == 1.0) {
                 System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
-                Person.addMoney(randomMoney);
+                p.addMoney(randomMoney);
             }
             if(Run.inBetween(1.0, 20.0) == 1.0) {
                 System.out.println("Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
-                Person.removeMoney(randomMoney);
-                Person.removeHappiness(Run.inBetween(1.0, 10.0));
+                p.removeMoney(randomMoney);
+                p.removeHappiness(Run.inBetween(1.0, 10.0));
             }
         }
         if(ageGroup.equals("ELDER")) {
             if(Run.inBetween(1.0, 20.0) == 1.0) {
                 System.out.println("Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
-                Person.removeMoney(randomMoney);
+                p.removeMoney(randomMoney);
             }
             if(Run.inBetween(1.0, 30.0) == 1.0) {
                 System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
-                Person.addMoney(randomMoney);
+                p.addMoney(randomMoney);
             }
             if(Run.inBetween(1.0, 25.0) == 1.0) {
                 System.out.println("You tried reaching something from the top shelf and suddenly you broke your hip and are sent to the hospital immediately.");
-                //hospital method
+                // add hospital method for broken hip lmao
             }
         }
     }
