@@ -14,7 +14,8 @@ public class Person {
     private static boolean isMarried   = false;
     private static int     numChildren = 0;
     private static boolean college     = false;
-    private static int     age = 0;
+    private static int     age         = 0;
+
 
     // Constructor for the Person Class
     public Person(String name, double bal, double income) {
@@ -46,6 +47,11 @@ public class Person {
         health -= x;
     }
 
+    // Sets the Health to a value
+    public voic setHealth(int x) {
+        health = x;
+    }
+
     // Changes the Income
     public void changeIncome(double x) {
         income = x;
@@ -59,6 +65,10 @@ public class Person {
     // Adds Happiness
     public void addHappiness(int x) {
         happiness += x;
+
+        if (happiness > 100) {
+            happiness = 100;
+        }
     }
 
     // Remove Happiness
@@ -69,6 +79,14 @@ public class Person {
     public void wentToCollege(double price) {
         bal     -= price;
         college  = true;
+    }
+
+    public void addAge(int x) {
+        age += x;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public boolean getCollege() {
@@ -119,13 +137,4 @@ public class Person {
     {
         return workExperience;
     }
-    public void addAge(int add)
-    {
-        this.age += add;
-    }
-    public int getAge()
-    {
-        return age;
-    }
-
 }

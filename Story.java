@@ -11,8 +11,9 @@ public class Story {
     private Person        p;
     private Jobs          career;
     private Scanner       input;
-    private static int    age      = 0;
-    private static String ageGroup = "CHILD";
+    private static String ageGroup  = "CHILD";
+    private boolean       chooseDie = false;
+    private String        dieString;
 
     // Constructor for the Person Class
     public Story(Person p, Jobs career, Scanner input) {
@@ -23,18 +24,18 @@ public class Story {
 
     // Sets persons age group to the proper age group depending on age
     private void setAgeGroup() {
-        if (age >= 12 && age < 18) {
+        if (p.getAge() >= 12 && p.getAge() < 18) {
             Story.ageGroup = "TEEN";
-        } else if (age >= 18 && age < 50) {
+        } else if (p.getAge() >= 18 && p.getAge() < 50) {
             Story.ageGroup = "ADULT";
-        } else if (age >= 50) {
+        } else if (p.getAge() >= 50) {
             Story.ageGroup = "ELDER";
         }
     }
 
     // Game over check
     public boolean gameOver() {
-        if (age >= 100 || p.getHealth() <= 0) {
+        if (p.getAge() >= 100 || p.getHealth() <= 0 || p.getHappiness() <= 0) {
             return true;
         }
         return false;
@@ -43,7 +44,7 @@ public class Story {
     public void yearStart() {
         // Prints Out Needed Information
         System.out.println(p.getName() + "\'s health is at " + p.getHealth() + ". \n" + "Your bank balance is "
-                + p.getBal() + ", \n" + "and your age is " + age);
+                + p.getBal() + ", \n" + "and your age is " + p.getAge());
 
         System.out.println("Would You like to do anything this year? Type \'Yes\' or \'No\'");
 
@@ -67,59 +68,182 @@ public class Story {
 
         boolean choiceMade = false;
 
-        while(choiceMade == false){
-        if (ageGroup.equals("CHILD")) {
-            // Child Choices
-            System.out.println("If you want to play with friends type \'Friends\'");
-            System.out.println("If you want to spend your allowance on candy type \'Candy\'");
+        while (choiceMade == false) {
+            if (ageGroup.equals("CHILD")) {
+                // Child Choices
+                System.out.println("If you want to play with friends type \'Friends\'");
+                System.out.println("If you want to spend your allowance on candy type \'Candy\'");
 
-        } else if (ageGroup.equals("Teen")) {
-            // Ten Choices
-            System.out.println("If you want to hang out with friends type \'Friends\'");
-            System.out.println("If you want to go to lunch with your friends type \'Lunch\'");
+                if (p.getHealth() < 100) {
+                    System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
+                }
 
-            if (career.hasJob() == false) {
-                System.out.println("If you want to get a job type \'Job\'");
+            } else if (ageGroup.equals("TEEN")) {
+                // Teen Choices
+                System.out.println("If you want to hang out with friends type \'Friends\'");
+                System.out.println("If you want to go to lunch with your friends type \'Lunch\'");
+                System.out.println("If you want to invest your money type \'Invest\'");
+
+                if (career.hasJob() == false) {
+                    System.out.println("If you want to get a job type \'Job\'");
+                }
+
+                if (p.getHealth() < 100) {
+                    System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
+                }
+
+                if (p.getHappiness() < 15) {
+                    System.out.println("you are the big sad do you want to end it all? Type \'Die\'");
+                }
+
+            } else if (ageGroup.equals("ADULT")) {
+                // Adult Choices
+                System.out.println("If you want to invest your money type \'Invest\'");
+                System.out.println("Would you like to go to the club? type \'Club\'");
+
+                if (career.hasJob() == false) {
+                    System.out.println("If you want to get a job type \'Job\'");
+                }
+
+                if (p.getHealth() < 100) {
+                    System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
+                }
+
+                if (p.getHappiness() < 15) {
+                    System.out.println("you are the big sad do you want to end it all? Type \'Die\'");
+                }
+
+            } else {
+                // Elder Choices
+                System.out.println("If you want to invest your money type \'Invest\'");
+
+                if (p.getHealth() < 100) {
+                    System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
+                }
+
+                if (p.getHappiness() < 15) {
+                    System.out.println("you are the big sad do you want to end it all? Type \'Die\'");
+                }
+
             }
 
-        } else if (ageGroup.equals("Adult")) {
-            // Adult Choices
-            System.out.println();
+            System.out.println("If you do not want to do anything else type \'Done\'");
 
-            if (career.hasJob() == false) {
-                System.out.println("If you want to get a job type \'Job\'");
+            String dec = input.next();
+            if (dec.equals("Friends")) {
+                int hap = (int) (Math.random() * 100);
+                System.out.println("You hang out with friends and you happiness goes up by " + hap);
+                p.addHappiness(hap);
+                return false;
             }
 
-        } else {
-            // Elder Choices
-            System.out.println();
+            if (dec.equals("Candy")) {
+                if (p.getBal() < 10) {
+                    System.out.println("You do not have enough money");
+                    return false;
+                }
+                System.out.println("You spend $10 on candy and you happiness goes up by 10!");
+                p.removeMoney(10);
+                p.addHappiness(10);
+                return false;
+            }
 
+            if (dec.equals("Lunch")) {
+                if (p.getBal() < 10) {
+                    System.out.println("You do not have enough money");
+                    return false;
+                }
+                System.out.println("You go to lunch and spend $10 and your happiness goes up by 10");
+                p.removeMoney(10);
+                p.addHappiness(10);
+                return false;
+            }
+
+            if (dec.equals("Job")) {
+                career.jobOptions();
+                return false;
+            }
+
+            if (dec.equals("Health")) {
+                goToHospital();
+                return false;
+            }
+
+            if (dec.equals("Invest")) {
+                int chance = (int) Math.random() * 100;
+                System.out.println("You have the opportunity to invest your money with a " + chance
+                        + "% chance of success, do you want to invest? Type \'1\' for yes, and \'0\' for no: ");
+                String answer = input.next();
+                if (answer.equals("1")) {
+                    System.out.println(
+                            "How much would you like to invest, you have $" + p.getBal() + " in your bank account");
+                    int amt = input.nextInt();
+
+                    p.removeMoney(amt);
+                    invest(amt, chance);
+                }
+            }
+
+            if (dec.equals("Die")) {
+
+                System.out.println(
+                        "You are reaching a state of depression. Would you like to kill yourself? \'1\' for yes, and \'0\' for no: ");
+                String suicide = input.next();
+                if (suicide.equals("1")) {
+                    int suicideOption = (int) Run.inBetween(1, 3);
+                    if (suicideOption == 1) {
+                        dieString = "You couldn\'t take the pain anymore. You have decided to go outside and walk into oncoming traffic and get hit by a double-decker bus. You were sent to the hospital but didn\'t survive.";
+                    } else if (suicideOption == 2) {
+                        dieString = "You have decided to take the easy way out. You go to a local Walmart store and buy 10 feet of rope. You come back home and tie a noose on your ceiling fan. You kick off the chair you stand on and then suddenly everything goes black.";
+                    } else if (suicideOption == 3) {
+                        dieString = "You have made the choice to take the easy way out. You go to your kitchen and grab a chef knife from the drawer. You walk to your bathroom and sit in the tub. Tears fill your eyes as you do the deed of slitting your wrists until you are no more.";
+                    }
+                    p.removeHealth(100);
+                    chooseDie = true;
+                    return true;
+                }
+                return false;
+            }
+
+            if (dec.equals("Club")) {
+                int numShots = Run.inBetween(7, 20);
+                System.out.println("You went to the club with your friends and drank " + numShots
+                        + " shot of tequila and threw up in the bathroom.");
+                int    hpLost   = (int) (numShots / .75);
+                double monSpent = numShots * 6.50;
+                int    hapGain  = numShots * (int) Run.inBetween(1, 4);
+                System.out.println("You lost " + hpLost + " health and $" + monSpent + ". You also gained " + hapGain
+                        + " happiness");
+                p.removeHealth(hpLost);
+                p.addHappiness(hapGain);
+                p.removeMoney(monSpent);
+            }
+
+            if (dec.equals("Done")) {
+                return true;
+            }
+
+            System.out.println(
+                    "You either didnt enter the proper text, or you entered something that is not a choice, try again.");
         }
 
-        System.out.println("If you do not want to do anything else type \'Done\'");
+        return true;
 
-        String dec = input.next();
-        if (dec.equals("Yes")) {
-            return false;
-        }
-
-        if (dec.equals("Done")) {
-            return true;
-        }
-        System.out.println("You either didnt enter the proper text, or you entered something that is not a choice, try again.");
     }
-    return true;
-}
 
     // Year End Function
     public void yearEnd() {
+
+        if (chooseDie) {
+            System.out.println(dieString);
+        }
 
         // Get Yearly Income Pay
         p.payday();
 
         // Adds a year to your age
-        p.addAge()
-        System.out.println(p.getAge);
+        p.addAge(1);
+
 
         // Sets your proper age group
         this.setAgeGroup();
