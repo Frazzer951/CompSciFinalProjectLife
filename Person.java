@@ -44,6 +44,11 @@ public class Person {
         health -= x;
     }
 
+    // Sets the Health to a value
+    public voic setHealth(int x) {
+        health = x;
+    }
+
     // Changes the Income
     public void changeIncome(double x) {
         income = x;
@@ -57,6 +62,10 @@ public class Person {
     // Adds Happiness
     public void addHappiness(int x) {
         happiness += x;
+
+        if (happiness > 100) {
+            happiness = 100;
+        }
     }
 
     // Remove Happiness
