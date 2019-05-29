@@ -11,9 +11,10 @@ public class Story {
     private Person        p;
     private Jobs          career;
     private Scanner       input;
-    private static String ageGroup  = "CHILD";
-    private boolean       chooseDie = false;
+    private static String ageGroup     = "CHILD";
+    private boolean       chooseDie    = false;
     private String        dieString;
+    private boolean       debugDisable = false;
 
     // Constructor for the Person Class
     public Story(Person p, Jobs career, Scanner input) {
@@ -61,6 +62,38 @@ public class Story {
                 break;
             }
             System.out.println("You must type \'Yes\' or \'No\'");
+        }
+
+        if (p.getName().equals("Debug") && debugDisable == false) {
+            while (true) {
+                System.out.println(
+                        "You are in the debug menu, type \'end\' to get out, \'stop\' to never see this again");
+                System.out.println("\'Age\' for age, \'Hp\' for health, \'Hap\' for happiness, ");
+                String debugChoice = input.next();
+                if (debugChoice.equals("end")) {
+                    break;
+                }
+
+                if (debugChoice.equals("stop")) {
+                    debugDisable = true;
+                    break;
+                }
+
+                if (debugChoice.equals("Age")) {
+                    System.out.println("Input Age: ");
+                    p.setAge(input.nextInt());
+                }
+
+                if (debugChoice.equals("Hp")) {
+                    System.out.println("Input Health: ");
+                    p.setHealth(input.nextInt());
+                }
+
+                if (debugChoice.equals("Hap")) {
+                    System.out.println("Input Happiness: ");
+                    p.setHap(input.nextInt());
+                }
+            }
         }
     }
 
@@ -170,7 +203,7 @@ public class Story {
             }
 
             if (dec.equals("Invest")) {
-                int chance = (int) Math.random() * 100;
+                int chance = (int) (Math.random() * 100);
                 System.out.println("You have the opportunity to invest your money with a " + chance
                         + "% chance of success, do you want to invest? Type \'1\' for yes, and \'0\' for no: ");
                 String answer = input.next();
@@ -181,6 +214,7 @@ public class Story {
 
                     p.removeMoney(amt);
                     invest(amt, chance);
+                    return false;
                 }
             }
 
@@ -206,7 +240,7 @@ public class Story {
             }
 
             if (dec.equals("Club")) {
-                int numShots = Run.inBetween(7, 20);
+                int numShots = (int) Run.inBetween(7, 20);
                 System.out.println("You went to the club with your friends and drank " + numShots
                         + " shot of tequila and threw up in the bathroom.");
                 int    hpLost   = (int) (numShots / .75);
@@ -244,52 +278,58 @@ public class Story {
         // Adds a year to your age
         p.addAge(1);
 
-
         // Sets your proper age group
         this.setAgeGroup();
 
         // Runs randomChance method
-        randomChance(this.ageGroup);
+        randomChance(ageGroup);
     }
 
     /*
-    *   Random chance of certain events occuring:
-    *   finding money on the ground, breaking your hip, getting robbed
-    */
-    public int randomChance(String ageGroup) {
+     * Random chance of certain events occuring: finding money on the ground,
+     * breaking your hip, getting robbed
+     */
+    public void randomChance(String ageGroup) {
         double randomMoney = Run.inBetween(1.0, 100.0);
-        if(ageGroup.equals("TEEN")) {
-            if(Run.inBetween(1.0, 30.0) == 1.0) {
-                System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
+        if (ageGroup.equals("TEEN")) {
+            if (Run.inBetween(1.0, 30.0) == 1.0) {
+                System.out.println(
+                        "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if(Run.inBetween(1.0, 20.0) == 1.0) {
-                System.out.println("Ruh roh! You have been caught doing something naughty by your parents and have been grounded");
-                p.removeHappiness(Run.inBetween(1.0, 10.0));
+            if (Run.inBetween(1.0, 20.0) == 1.0) {
+                System.out.println(
+                        "Ruh roh! You have been caught doing something naughty by your parents and have been grounded");
+                p.removeHappiness((int) Run.inBetween(1.0, 10.0));
             }
         }
-        if(ageGroup.equals("ADULT")) {
-            if(Run.inBetween(1.0, 30.0) == 1.0) {
-                System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
+        if (ageGroup.equals("ADULT")) {
+            if (Run.inBetween(1.0, 30.0) == 1.0) {
+                System.out.println(
+                        "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if(Run.inBetween(1.0, 20.0) == 1.0) {
-                System.out.println("Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
+            if (Run.inBetween(1.0, 20.0) == 1.0) {
+                System.out.println(
+                        "Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
                 p.removeMoney(randomMoney);
-                p.removeHappiness(Run.inBetween(1.0, 10.0));
+                p.removeHappiness((int) Run.inBetween(1.0, 10.0));
             }
         }
-        if(ageGroup.equals("ELDER")) {
-            if(Run.inBetween(1.0, 20.0) == 1.0) {
-                System.out.println("Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
+        if (ageGroup.equals("ELDER")) {
+            if (Run.inBetween(1.0, 20.0) == 1.0) {
+                System.out.println(
+                        "Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
                 p.removeMoney(randomMoney);
             }
-            if(Run.inBetween(1.0, 30.0) == 1.0) {
-                System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
+            if (Run.inBetween(1.0, 30.0) == 1.0) {
+                System.out.println(
+                        "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if(Run.inBetween(1.0, 25.0) == 1.0) {
-                System.out.println("You tried reaching something from the top shelf and suddenly you broke your hip and are sent to the hospital immediately.");
+            if (Run.inBetween(1.0, 25.0) == 1.0) {
+                System.out.println(
+                        "You tried reaching something from the top shelf and suddenly you broke your hip and are sent to the hospital immediately.");
                 // add hospital method for broken hip lmao
             }
         }
@@ -304,7 +344,7 @@ public class Story {
 
         if (chance <= check) {
             p.addMoney(amt * rate);
-            System.out.println("Your investment has succeded, and you have earned $" + amt / chance + "!");
+            System.out.println("Your investment has succeded, and you have earned $" + amt * rate + "!");
         }
     }
 

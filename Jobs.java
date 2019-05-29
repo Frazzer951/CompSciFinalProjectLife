@@ -4,6 +4,7 @@
  */
 
 import java.util.Scanner;
+import java.lang.Math;
 
 public class Jobs {
 
@@ -27,13 +28,13 @@ public class Jobs {
             mul = 3.0;
         }
 
-        int choice1 = (int) Run.inBetween(0.0, jobList.length);
-        int choice2 = (int) Run.inBetween(0.0, jobList.length);
-        int choice3 = (int) Run.inBetween(0.0, jobList.length);
+        int choice1 = (int) Run.inBetween(0.0, jobList.length - 1);
+        int choice2 = (int) Run.inBetween(0.0, jobList.length - 1);
+        int choice3 = (int) Run.inBetween(0.0, jobList.length - 1);
 
-        double price1 = Run.inBetween(20000.0, 50000.0) * mul;
-        double price2 = Run.inBetween(20000.0, 50000.0) * mul;
-        double price3 = Run.inBetween(20000.0, 50000.0) * mul;
+        double price1 = ((int) (Run.inBetween(20000.0, 50000.0) * mul * 100) / 100.0);
+        double price2 = ((int) (Run.inBetween(20000.0, 50000.0) * mul * 100) / 100.0);
+        double price3 = ((int) (Run.inBetween(20000.0, 50000.0) * mul * 100) / 100.0);
 
         System.out.println("Here are your job choices.");
         System.out.println("Choice 1: " + jobList[choice1] + " for $" + price1 + " a year");
@@ -46,56 +47,40 @@ public class Jobs {
 
         while (!madeChoice) {
             int choice = input.nextInt();
-            if (choice == 1) 
-            {
+            if (choice == 1) {
                 double chance1 = jobInterviewChance(price1);
-                if((Math.random * 100.00) < chance1)
-                {
+                if ((Math.random() * 100.00) < chance1) {
                     System.out.println("You got the job!");
                     jobIncome  = price1;
                     jobTitle   = jobList[choice1];
                     madeChoice = true;
-                }
-                else
-                {
+                } else {
                     System.out.println("You didn't get the job");
                     madeChoice = true;
                 }
-            } 
-            else if (choice == 2) 
-            {
+            } else if (choice == 2) {
                 double chance2 = jobInterviewChance(price2);
-                if((Math.random * 100.00) < chance2)
-                {
+                if ((Math.random() * 100.00) < chance2) {
                     System.out.println("You got the job!");
                     jobIncome  = price2;
                     jobTitle   = jobList[choice2];
                     madeChoice = true;
-                }
-                else
-                {
+                } else {
                     System.out.println("You didn't get the job");
                     madeChoice = true;
                 }
-            } 
-            else if (choice == 3) 
-            {
+            } else if (choice == 3) {
                 double chance3 = jobInterviewChance(price3);
-                if((Math.random * 100.00) < chance3)
-                {
+                if ((Math.random() * 100.00) < chance3) {
                     System.out.println("You got the job!");
                     jobIncome  = price3;
                     jobTitle   = jobList[choice3];
                     madeChoice = true;
-                }
-                else
-                {
+                } else {
                     System.out.println("You didn't get the job");
                     madeChoice = true;
                 }
-            } 
-            else 
-            {
+            } else {
                 System.out.println("You must put a number between 1 and 3");
             }
         }
@@ -126,34 +111,26 @@ public class Jobs {
      * println("You made a bad call at work, and your pay has been docked"); } }
      */
 
-     
-    /* Calculates the chance someone has when they choose a job. The higher the pay, the less of a chance
-     * to get the job. Work experience increases chance to get a job. With 20+ years work experience being
-     * the max affecting your job. College degree affects chances too
-     * Min: 0 work experience, no college and lowest pay: ~ 72% chance
-     * Max: 20 years work experience, college degree, highest pay: ~ 92% chance.
+    /*
+     * Calculates the chance someone has when they choose a job. The higher the pay,
+     * the less of a chance to get the job. Work experience increases chance to get
+     * a job. With 20+ years work experience being the max affecting your job.
+     * College degree affects chances too Min: 0 work experience, no college and
+     * lowest pay: ~ 72% chance Max: 20 years work experience, college degree,
+     * highest pay: ~ 92% chance.
      */
-    public double jobInterviewChance(int pay)
-    {
-        int workE = (p.getWorkExperience()/50.0)
-        if(workE >= .40)
-        {
+    public double jobInterviewChance(double pay) {
+        double workE = (p.getWorkExperience() / 50.0);
+        if (workE >= .40) {
             workE = .40;
         }
         double mult = 0.0;
-        if(p.getCollege)
-        {
+        if (p.getCollege()) {
             mult = .30;
+        } else {
+            mult = 1.0;
         }
-        else
-        {
-            mult = 1.0
-        }
-        double chance = ((1/(1+(pay/50000.0)*mult)) + workE) * 100.0;
-
-
-
-
-
+        double chance = ((1 / (1 + (pay / 50000.0) * mult)) + workE) * 100.0;
+        return chance;
     }
 }

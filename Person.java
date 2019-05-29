@@ -16,7 +16,6 @@ public class Person {
     private static boolean college     = false;
     private static int     age         = 0;
 
-
     // Constructor for the Person Class
     public Person(String name, double bal, double income) {
         this.name   = name;
@@ -48,7 +47,7 @@ public class Person {
     }
 
     // Sets the Health to a value
-    public voic setHealth(int x) {
+    public void setHealth(int x) {
         health = x;
     }
 
@@ -76,6 +75,10 @@ public class Person {
         happiness -= x;
     }
 
+    public void setHap(int x) {
+        happiness = x;
+    }
+
     public void wentToCollege(double price) {
         bal     -= price;
         college  = true;
@@ -83,6 +86,10 @@ public class Person {
 
     public void addAge(int x) {
         age += x;
+    }
+
+    public void setAge(int x) {
+        age = x;
     }
 
     public int getAge() {
@@ -128,13 +135,11 @@ public class Person {
         return numChildren;
     }
 
-    public void addWorkExperience(int ad)
-    {
+    public void addWorkExperience(int ad) {
         this.workExperience += ad;
     }
 
-    public int getWorkExperience()
-    {
+    public int getWorkExperience() {
         return workExperience;
     }
 }
