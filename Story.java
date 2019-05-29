@@ -118,7 +118,8 @@ public class Story {
         p.payday();
 
         // Adds a year to your age
-        age++;
+        p.addAge()
+        System.out.println(p.getAge);
 
         // Sets your proper age group
         this.setAgeGroup();
@@ -142,6 +143,8 @@ public class Story {
     // expensive)
     // If they choose sketchy hospital they have a chance for it go wrong and lose
     // more health
+    // Healthy: costs between $100 - $1000 for each "1" health at normal clinic
+    // Sketchy: costs between $10 - $100 for each "1" health at sketchy clinic
     public void goToHospital() {
         int    healthNeeded = 100 - p.getHealth();
         double cashNormal   = healthNeeded * 100.0 * Run.inBetween(1, 10);
