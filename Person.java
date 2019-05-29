@@ -13,6 +13,7 @@ public class Person {
     private static boolean isMarried   = false;
     private static int     numChildren = 0;
     private static boolean college     = false;
+    private static int     age         = 0;
 
     // Constructor for the Person Class
     public Person(String name, double bal, double income) {
@@ -76,6 +77,14 @@ public class Person {
     public void wentToCollege(double price) {
         bal     -= price;
         college  = true;
+    }
+
+    public void addAge(int x) {
+        age += x;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public boolean getCollege() {

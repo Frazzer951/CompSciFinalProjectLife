@@ -11,7 +11,6 @@ public class Story {
     private Person        p;
     private Jobs          career;
     private Scanner       input;
-    private static int    age       = 0;
     private static String ageGroup  = "CHILD";
     private boolean       chooseDie = false;
     private String        dieString;
@@ -25,18 +24,18 @@ public class Story {
 
     // Sets persons age group to the proper age group depending on age
     private void setAgeGroup() {
-        if (age >= 12 && age < 18) {
+        if (p.getAge() >= 12 && p.getAge() < 18) {
             Story.ageGroup = "TEEN";
-        } else if (age >= 18 && age < 50) {
+        } else if (p.getAge() >= 18 && p.getAge() < 50) {
             Story.ageGroup = "ADULT";
-        } else if (age >= 50) {
+        } else if (p.getAge() >= 50) {
             Story.ageGroup = "ELDER";
         }
     }
 
     // Game over check
     public boolean gameOver() {
-        if (age >= 100 || p.getHealth() <= 0 || p.getHappiness() <= 0) {
+        if (p.getAge() >= 100 || p.getHealth() <= 0 || p.getHappiness() <= 0) {
             return true;
         }
         return false;
@@ -45,7 +44,7 @@ public class Story {
     public void yearStart() {
         // Prints Out Needed Information
         System.out.println(p.getName() + "\'s health is at " + p.getHealth() + ". \n" + "Your bank balance is "
-                + p.getBal() + ", \n" + "and your age is " + age);
+                + p.getBal() + ", \n" + "and your age is " + p.getAge());
 
         System.out.println("Would You like to do anything this year? Type \'Yes\' or \'No\'");
 
@@ -100,6 +99,7 @@ public class Story {
             } else if (ageGroup.equals("ADULT")) {
                 // Adult Choices
                 System.out.println("If you want to invest your money type \'Invest\'");
+                System.out.println("Would you like to go to the club? type \'Club\'");
 
                 if (career.hasJob() == false) {
                     System.out.println("If you want to get a job type \'Job\'");
@@ -205,6 +205,20 @@ public class Story {
                 return false;
             }
 
+            if (dec.equals("Club")) {
+                int numShots = Run.inBetween(7, 20);
+                System.out.println("You went to the club with your friends and drank " + numShots
+                        + " shot of tequila and threw up in the bathroom.");
+                int    hpLost   = (int) (numShots / .75);
+                double monSpent = numShots * 6.50;
+                int    hapGain  = numShots * (int) Run.inBetween(1, 4);
+                System.out.println("You lost " + hpLost + " health and $" + monSpent + ". You also gained " + hapGain
+                        + " happiness");
+                p.removeHealth(hpLost);
+                p.addHappiness(hapGain);
+                p.removeMoney(monSpent);
+            }
+
             if (dec.equals("Done")) {
                 return true;
             }
@@ -228,7 +242,7 @@ public class Story {
         p.payday();
 
         // Adds a year to your age
-        age++;
+        p.addAge(1);
 
         // Sets your proper age group
         this.setAgeGroup();
