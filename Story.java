@@ -138,6 +138,10 @@ public class Story {
                 System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 Person.addMoney(randomMoney);
             }
+            if(Run.inBetween(1.0, 20.0) == 1.0) {
+                System.out.println("Ruh roh! You have been caught doing something naughty by your parents and have been grounded");
+                Person.removeHappiness(Run.inBetween(1.0, 10.0));
+            }
         }
         if(ageGroup.equals("ADULT")) {
             if(Run.inBetween(1.0, 30.0) == 1.0) {
@@ -147,6 +151,7 @@ public class Story {
             if(Run.inBetween(1.0, 20.0) == 1.0) {
                 System.out.println("Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
                 Person.removeMoney(randomMoney);
+                Person.removeHappiness(Run.inBetween(1.0, 10.0));
             }
         }
         if(ageGroup.equals("ELDER")) {
