@@ -8,12 +8,14 @@ public class Person {
     private double         income;
     private String         name;
     private double         bal;
+    private int            workExperience;
     private static int     health      = 100;
     private static int     happiness   = 100;
     private static boolean isMarried   = false;
     private static int     numChildren = 0;
     private static boolean college     = false;
     private static int     age         = 0;
+
 
     // Constructor for the Person Class
     public Person(String name, double bal, double income) {
@@ -126,4 +128,13 @@ public class Person {
         return numChildren;
     }
 
+    public void addWorkExperience(int ad)
+    {
+        this.workExperience += ad;
+    }
+
+    public int getWorkExperience()
+    {
+        return workExperience;
+    }
 }

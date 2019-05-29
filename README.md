@@ -17,7 +17,9 @@ TODO:
         [] Add more option in the job class
         [] Put choices back in investment method, recently redon and need to be finished
         [] Redo random chances to be based on age
-        [] make job interviews not a 100% chance
+        [X] make job interviews not a 100% chance
+        [] make a "house option" with taking away a rent from the balance/income each month;
+        [] Comment on all the methods and class declaring what everything does.
 
 
 

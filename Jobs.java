@@ -46,19 +46,56 @@ public class Jobs {
 
         while (!madeChoice) {
             int choice = input.nextInt();
-            if (choice == 1) {
-                jobIncome  = price1;
-                jobTitle   = jobList[choice1];
-                madeChoice = true;
-            } else if (choice == 2) {
-                jobIncome  = price2;
-                jobTitle   = jobList[choice2];
-                madeChoice = true;
-            } else if (choice == 3) {
-                jobIncome  = price3;
-                jobTitle   = jobList[choice3];
-                madeChoice = true;
-            } else {
+            if (choice == 1) 
+            {
+                double chance1 = jobInterviewChance(price1);
+                if((Math.random * 100.00) < chance1)
+                {
+                    System.out.println("You got the job!");
+                    jobIncome  = price1;
+                    jobTitle   = jobList[choice1];
+                    madeChoice = true;
+                }
+                else
+                {
+                    System.out.println("You didn't get the job");
+                    madeChoice = true;
+                }
+            } 
+            else if (choice == 2) 
+            {
+                double chance2 = jobInterviewChance(price2);
+                if((Math.random * 100.00) < chance2)
+                {
+                    System.out.println("You got the job!");
+                    jobIncome  = price2;
+                    jobTitle   = jobList[choice2];
+                    madeChoice = true;
+                }
+                else
+                {
+                    System.out.println("You didn't get the job");
+                    madeChoice = true;
+                }
+            } 
+            else if (choice == 3) 
+            {
+                double chance3 = jobInterviewChance(price3);
+                if((Math.random * 100.00) < chance3)
+                {
+                    System.out.println("You got the job!");
+                    jobIncome  = price3;
+                    jobTitle   = jobList[choice3];
+                    madeChoice = true;
+                }
+                else
+                {
+                    System.out.println("You didn't get the job");
+                    madeChoice = true;
+                }
+            } 
+            else 
+            {
                 System.out.println("You must put a number between 1 and 3");
             }
         }
@@ -89,4 +126,34 @@ public class Jobs {
      * println("You made a bad call at work, and your pay has been docked"); } }
      */
 
+     
+    /* Calculates the chance someone has when they choose a job. The higher the pay, the less of a chance
+     * to get the job. Work experience increases chance to get a job. With 20+ years work experience being
+     * the max affecting your job. College degree affects chances too
+     * Min: 0 work experience, no college and lowest pay: ~ 72% chance
+     * Max: 20 years work experience, college degree, highest pay: ~ 92% chance.
+     */
+    public double jobInterviewChance(int pay)
+    {
+        int workE = (p.getWorkExperience()/50.0)
+        if(workE >= .40)
+        {
+            workE = .40;
+        }
+        double mult = 0.0;
+        if(p.getCollege)
+        {
+            mult = .30;
+        }
+        else
+        {
+            mult = 1.0
+        }
+        double chance = ((1/(1+(pay/50000.0)*mult)) + workE) * 100.0;
+
+
+
+
+
+    }
 }
