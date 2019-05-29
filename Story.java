@@ -122,6 +122,47 @@ public class Story {
 
         // Sets your proper age group
         this.setAgeGroup();
+
+        // Runs randomChance method
+        randomChance(this.ageGroup);
+    }
+
+    /*
+    *   Random chance of certain events occuring:
+    *   finding money on the ground, breaking your hip, getting robbed
+    */
+    public int randomChance(String ageGroup) {
+        double randomMoney = Run.inBetween(1.0, 100.0);
+        if(ageGroup.equals("TEEN")) {
+            if(Run.inBetween(1.0, 30.0) == 1.0) {
+                System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
+                Person.addMoney(randomMoney);
+            }
+        }
+        if(ageGroup.equals("ADULT")) {
+            if(Run.inBetween(1.0, 30.0) == 1.0) {
+                System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
+                Person.addMoney(randomMoney);
+            }
+            if(Run.inBetween(1.0, 20.0) == 1.0) {
+                System.out.println("Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
+                Person.removeMoney(randomMoney);
+            }
+        }
+        if(ageGroup.equals("ELDER")) {
+            if(Run.inBetween(1.0, 20.0) == 1.0) {
+                System.out.println("Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
+                Person.removeMoney(randomMoney);
+            }
+            if(Run.inBetween(1.0, 30.0) == 1.0) {
+                System.out.println("It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
+                Person.addMoney(randomMoney);
+            }
+            if(Run.inBetween(1.0, 25.0) == 1.0) {
+                System.out.println("You tried reaching something from the top shelf and suddenly you broke your hip and are sent to the hospital immediately.");
+                //hospital method
+            }
+        }
     }
 
     // Function for the investment option in yearStart function
