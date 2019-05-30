@@ -8,7 +8,7 @@ public class Person {
     private double         income;
     private String         name;
     private double         bal;
-    private int            workExperience;
+    private static int     workExperience;
     private static int     health      = 100;
     private static int     happiness   = 100;
     private static boolean isMarried   = false;
@@ -136,7 +136,7 @@ public class Person {
     }
 
     public void addWorkExperience(int ad) {
-        this.workExperience += ad;
+        workExperience += ad;
     }
 
     public int getWorkExperience() {

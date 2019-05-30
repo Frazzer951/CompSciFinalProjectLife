@@ -104,8 +104,9 @@ public class Story {
         boolean choiceMade = false;
 
         while (choiceMade == false) {
+            // Child Choices
             if (ageGroup.equals("CHILD")) {
-                // Child Choices
+
                 System.out.println("If you want to play with friends type \'Friends\'");
                 System.out.println("If you want to spend your allowance on candy type \'Candy\'");
 
@@ -113,8 +114,9 @@ public class Story {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
                 }
 
-            } else if (ageGroup.equals("TEEN")) {
                 // Teen Choices
+            } else if (ageGroup.equals("TEEN")) {
+
                 System.out.println("If you want to hang out with friends type \'Friends\'");
                 System.out.println("If you want to go to lunch with your friends type \'Lunch\'");
                 System.out.println("If you want to invest your money type \'Invest\'");
@@ -131,8 +133,9 @@ public class Story {
                     System.out.println("you are the big sad do you want to end it all? Type \'Die\'");
                 }
 
-            } else if (ageGroup.equals("ADULT")) {
                 // Adult Choices
+            } else if (ageGroup.equals("ADULT")) {
+
                 System.out.println("If you want to invest your money type \'Invest\'");
                 System.out.println("Would you like to go to the club? type \'Club\'");
 
@@ -148,8 +151,13 @@ public class Story {
                     System.out.println("you are the big sad do you want to end it all? Type \'Die\'");
                 }
 
-            } else {
+                if (p.getCollege() == false) {
+                    System.out.println("Do you want to go to college? Type \'College\' ");
+                }
+
                 // Elder Choices
+            } else {
+
                 System.out.println("If you want to invest your money type \'Invest\'");
 
                 if (p.getHealth() < 100) {
@@ -255,6 +263,16 @@ public class Story {
                 p.removeMoney(monSpent);
             }
 
+            if (dec.equals("College")) {
+                double collegeCost = ((int) (Run.inBetween(2000, 50000) * 100) / 100.0);
+                System.out.println("College will cost you $" + collegeCost + ", do you want to go? Type \'Yes\'");
+                String colChoice = input.next();
+
+                if (colChoice.equals("Yes")) {
+                    p.wentToCollege(collegeCost);
+                }
+            }
+
             if (dec.equals("Done")) {
                 return true;
             }
@@ -274,6 +292,13 @@ public class Story {
             System.out.println(dieString);
         }
 
+        if (career.hasJob()) {
+            p.addWorkExperience(1);
+        }
+
+        if (p.getAge() == 15) {
+            p.changeIncome(0);
+        }
         // Get Yearly Income Pay
         p.payday();
         // Adds a year to your age
@@ -289,8 +314,9 @@ public class Story {
      * breaking your hip, getting robbed
      */
     public void randomChance(String ageGroup) {
-        double randomMoney = Run.inBetween(1.0, 100.0);
+        double randomMoney = (int) (Run.inBetween(1, 100) * 100) / 100.0;
         if (ageGroup.equals("TEEN")) {
+
             if ((int) Run.inBetween(1.0, 30.0) == 1) {
                 System.out.println(
                         "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
@@ -337,13 +363,13 @@ public class Story {
     // Function for the investment option in yearStart function
     private void invest(double amt, double chance) {
 
-        double rate = 100.0 / chance;
-
-        double check = Math.random() * 100.0;
+        double rate    = 100.0 / chance;
+        double check   = Math.random() * 100.0;
+        double amtErnd = (int) (amt * rate * 100) / 100.0;
 
         if (chance <= check) {
-            p.addMoney(amt * rate);
-            System.out.println("Your investment has succeded, and you have earned $" + amt * rate + "!");
+            p.addMoney(amtErnd);
+            System.out.println("Your investment has succeded, and you have earned $" + amtErnd + "!");
         }
     }
 

@@ -34,8 +34,14 @@ public class Run {
         input.close();
     }
 
+    //Returns A Random Number In a Range
     public static double inBetween(double min, double max) {
         return (Math.random() * ((max - min) + 1.0)) + min;
+    }
+
+    //Takes a double and takes it to only 2 decimal places
+    public static double moneySimplify(double x) {
+        return (int) (x * 100) / 100.0;
     }
 
     public final static void clearConsole() {
