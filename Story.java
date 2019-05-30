@@ -10,16 +10,18 @@ public class Story {
 
     private Person        p;
     private Jobs          career;
+    private House         home;
     private Scanner       input;
+    private String        dieString;
     private static String ageGroup     = "CHILD";
     private boolean       chooseDie    = false;
-    private String        dieString;
     private boolean       debugDisable = false;
 
     // Constructor for the Person Class
-    public Story(Person p, Jobs career, Scanner input) {
+    public Story(Person p, Jobs career, House home, Scanner input) {
         this.p      = p;
         this.career = career;
+        this.home   = home;
         this.input  = input;
     }
 

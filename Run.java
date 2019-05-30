@@ -18,7 +18,8 @@ public class Run {
         // Your income is $100 because that is your allowance from your parents
         Person p    = new Person(s, 0.0, 100.0);
         Jobs   work = new Jobs(p, input);
-        Story  life = new Story(p, work, input);
+        House home = new House(p, input);
+        Story  life = new Story(p, work, home, input);
 
         while (!life.gameOver()) {
             life.yearStart();
