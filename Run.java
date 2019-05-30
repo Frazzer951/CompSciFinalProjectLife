@@ -22,7 +22,9 @@ public class Run {
 
         while (!life.gameOver()) {
             life.yearStart();
-            System.out.print("\033[H\033[2J");
+
+            clearConsole();
+
             life.yearEnd();
         }
 
@@ -33,5 +35,19 @@ public class Run {
 
     public static double inBetween(double min, double max) {
         return (Math.random() * ((max - min) + 1.0)) + min;
+    }
+
+    public final static void clearConsole() {
+        try {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")) {
+                System.out.println(new String(new char[50]).replace("\0", "\r\n"));
+            } else {
+                System.out.print("\033[H\033[2J");
+            }
+        } catch (final Exception e) {
+            // Handle any exceptions.
+        }
     }
 }

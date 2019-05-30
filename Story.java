@@ -274,13 +274,10 @@ public class Story {
 
         // Get Yearly Income Pay
         p.payday();
-
         // Adds a year to your age
         p.addAge(1);
-
         // Sets your proper age group
         this.setAgeGroup();
-
         // Runs randomChance method
         randomChance(ageGroup);
     }
@@ -292,24 +289,24 @@ public class Story {
     public void randomChance(String ageGroup) {
         double randomMoney = Run.inBetween(1.0, 100.0);
         if (ageGroup.equals("TEEN")) {
-            if (Run.inBetween(1.0, 30.0) == 1.0) {
+            if ((int) Run.inBetween(1.0, 30.0) == 1) {
                 System.out.println(
                         "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if (Run.inBetween(1.0, 20.0) == 1.0) {
+            if ((int) Run.inBetween(1.0, 20.0) == 1) {
                 System.out.println(
                         "Ruh roh! You have been caught doing something naughty by your parents and have been grounded");
                 p.removeHappiness((int) Run.inBetween(1.0, 10.0));
             }
         }
         if (ageGroup.equals("ADULT")) {
-            if (Run.inBetween(1.0, 30.0) == 1.0) {
+            if ((int) Run.inBetween(1.0, 30.0) == 1) {
                 System.out.println(
                         "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if (Run.inBetween(1.0, 20.0) == 1.0) {
+            if ((int) Run.inBetween(1.0, 20.0) == 1) {
                 System.out.println(
                         "Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
                 p.removeMoney(randomMoney);
@@ -317,17 +314,17 @@ public class Story {
             }
         }
         if (ageGroup.equals("ELDER")) {
-            if (Run.inBetween(1.0, 20.0) == 1.0) {
+            if ((int) Run.inBetween(1.0, 20.0) == 1) {
                 System.out.println(
                         "Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
                 p.removeMoney(randomMoney);
             }
-            if (Run.inBetween(1.0, 30.0) == 1.0) {
+            if ((int) Run.inBetween(1.0, 30.0) == 1) {
                 System.out.println(
                         "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if (Run.inBetween(1.0, 25.0) == 1.0) {
+            if ((int) Run.inBetween(1.0, 25.0) == 1) {
                 System.out.println(
                         "You tried reaching something from the top shelf and suddenly you broke your hip and are sent to the hospital immediately.");
                 // add hospital method for broken hip lmao
