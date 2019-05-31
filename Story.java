@@ -121,7 +121,7 @@ public class Story {
                 System.out.println("If you want to go to lunch with your friends type \'Lunch\'");
                 System.out.println("If you want to invest your money type \'Invest\'");
 
-                if (career.hasJob() == false) {
+                if (career.hasJob() == false && p.getAge() >= 16) {
                     System.out.println("If you want to get a job type \'Job\'");
                 }
 
@@ -129,7 +129,7 @@ public class Story {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
                 }
 
-                if (p.getHappiness() < 15) {
+                if (p.getHappiness() < 5) {
                     System.out.println("you are the big sad do you want to end it all? Type \'Die\'");
                 }
 
@@ -144,11 +144,11 @@ public class Story {
                     System.out.println("If you want to get a job type \'Job\'");
                 }
                 
-                if (home.hasHouse == false)
+                if (home.hasHouse() == false)
                 {
                     System.out.println("Would you like to buy a house or rent an apartment? type \'House\'");
                 }
-                else if(home.hasHouse == true || home.hasApartment == true)
+                else if(home.hasHouse() == true || home.hasApartment() == true)
                 {
                     System.out.println("Would you like to sell your house or get out of an apartment lease? type \'NewPlace\'");
                     System.out.println("Would you like to see how much you've paid off? type \'Check Payment\'");
@@ -157,7 +157,7 @@ public class Story {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
                 }
 
-                if (p.getHappiness() < 15) {
+                if (p.getHappiness() < 5) {
                     System.out.println("you are the big sad do you want to end it all? Type \'Die\'");
                 }
 
@@ -174,10 +174,14 @@ public class Story {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
                 }
 
-                if (p.getHappiness() < 15) {
+                if (p.getHappiness() < 5) {
                     System.out.println("you are the big sad do you want to end it all? Type \'Die\'");
                 }
 
+            }
+
+            if (career.hasJob()) {
+                System.out.println("Type \'Quit\' if you wish to quit your job.");
             }
 
             System.out.println("If you do not want to do anything else type \'Done\'");
@@ -231,7 +235,7 @@ public class Story {
                     System.out.println(
                             "How much would you like to invest, you have $" + p.getBal() + " in your bank account");
                     int amt = input.nextInt();
-                    if(p.getbal() >= amt)
+                    if(p.getBal() >= amt)
                     {
                         p.removeMoney(amt);
                         invest(amt, chance);
@@ -279,13 +283,32 @@ public class Story {
             }
 
             if (dec.equals("College")) {
-                double collegeCost = ((int) (Run.inBetween(2000, 50000) * 100) / 100.0);
+                double collegeCost = ((int) (Run.inBetween(10000, 100000) * 100) / 100.0);
                 System.out.println("College will cost you $" + collegeCost + ", do you want to go? Type \'Yes\'");
                 String colChoice = input.next();
 
                 if (colChoice.equals("Yes")) {
                     p.wentToCollege(collegeCost);
+
+                    System.out.println(
+                            "Now that you have gone to college, would you like to quit your job and find a better one? Type \'Yes\' if you want to quit your job and \'No\' if you wish to keep it.");
+                    boolean inputMade = false;
+                    while (!inputMade) {
+                        String quit = input.next();
+                        if (quit.equals("Yes")) {
+                            career.quitJob();
+                            inputMade = true;
+                        } else if (quit.equals("No")) {
+                            inputMade = true;
+                        }
+                        System.out.println("You must type \'Yes\' or \'No\'.");
+                    }
                 }
+                return false;
+            }
+
+            if (dec.equals("Quit")) {
+                career.quitJob();
             }
 
             if(dec.equals("House"))
@@ -301,12 +324,12 @@ public class Story {
                 String conf = input.next();
                 if(conf.equals("Yes"))
                 {
-                    if(home.hasHouse == true)
+                    if(home.hasHouse() == true)
                     {
                         home.sellHouse();
                         home.houseOptions();
                     }
-                    else if(home.hasApartment == true)
+                    else if(home.hasApartment() == true)
                     {
                         home.stopApartment();
                         home.houseOptions();
@@ -344,11 +367,17 @@ public class Story {
             p.addWorkExperience(1);
         }
 
-        if (p.getAge() == 15) {
-            p.changeIncome(0);
+        if (career.hasJob()) {
+            career.jobRandom();
         }
 
-        // Checks to see if have a home/apartment and makes you pay rent/mortgage each year
+        if (p.getAge() == 15) {
+            p.changeIncome(0);
+            System.out.println("You no longer get allowance and must now get a job");
+        }
+
+        // Checks to see if have a home/apartment and makes you pay rent/mortgage each
+        // year
         home.payYearly();
         // Checks if you have housing to determine health improvement
         if(p.getAge() >= 18)
@@ -370,27 +399,58 @@ public class Story {
      * breaking your hip, getting robbed
      */
     public void randomChance(String ageGroup) {
-        double randomMoney = (int) (Run.inBetween(1, 100) * 100) / 100.0;
+        double randomMoney  = Run.moneySimplify(Run.inBetween(1, 10000));
+        int    randomHealth = (int) (Run.inBetween(1, 90));
+        if (ageGroup.equals("CHILD")) {
+            if ((int) Run.inBetween(1, 10) == 1) {
+                System.out.println("While running trough the park you trip and hit your arm, you lose " + randomHealth
+                        + " health.");
+                p.removeHealth(randomHealth);
+            }
+            if ((int) Run.inBetween(1, 15) == 1) {
+                System.out.println("Your favorite pet goes missing and you lose 10 happiness.");
+                p.removeHappiness(10);
+            }
+            if ((int) Run.inBetween(1, 20) == 1) {
+                int option = (int) (Math.random() + .5);
+                if (option == 0) {
+                    System.out.println(
+                            "You drink a strange liquid and get very sick and lose " + randomHealth + " health.");
+                } else {
+                    int comaYears = (int) Run.inBetween(1, 4);
+                    System.out.println("You drink a strange liquid and gain " + comaYears
+                            + " years of age. Acording to your parents you were in a coma.");
+                    p.addAge(comaYears);
+                }
+            }
+            if ((int) Run.inBetween(1, 40) == 1) {
+                System.out.println("You found $" + randomMoney + " on the ground");
+            }
+            if ((int) Run.inBetween(1, 5000) == 1) {
+                System.out.println("You see your parents do the dirty and lose 88 happiness");
+                p.removeHappiness(88);
+            }
+        }
         if (ageGroup.equals("TEEN")) {
 
-            if ((int) Run.inBetween(1.0, 30.0) == 1) {
+            if ((int) Run.inBetween(1, 30) == 1) {
                 System.out.println(
                         "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if ((int) Run.inBetween(1.0, 20.0) == 1) {
+            if ((int) Run.inBetween(1, 20) == 1) {
                 System.out.println(
                         "Ruh roh! You have been caught doing something naughty by your parents and have been grounded");
                 p.removeHappiness((int) Run.inBetween(1.0, 10.0));
             }
         }
         if (ageGroup.equals("ADULT")) {
-            if ((int) Run.inBetween(1.0, 30.0) == 1) {
+            if ((int) Run.inBetween(1, 30) == 1) {
                 System.out.println(
                         "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if ((int) Run.inBetween(1.0, 20.0) == 1) {
+            if ((int) Run.inBetween(1, 20) == 1) {
                 System.out.println(
                         "Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
                 p.removeMoney(randomMoney);
@@ -398,17 +458,17 @@ public class Story {
             }
         }
         if (ageGroup.equals("ELDER")) {
-            if ((int) Run.inBetween(1.0, 20.0) == 1) {
+            if ((int) Run.inBetween(1, 20) == 1) {
                 System.out.println(
                         "Oh no gamer! You have been threatened by a man with a weapon to give up $" + randomMoney);
                 p.removeMoney(randomMoney);
             }
-            if ((int) Run.inBetween(1.0, 30.0) == 1) {
+            if ((int) Run.inBetween(1, 30) == 1) {
                 System.out.println(
                         "It is your lucky day! You happened to stumble upon $" + randomMoney + " on the ground");
                 p.addMoney(randomMoney);
             }
-            if ((int) Run.inBetween(1.0, 25.0) == 1) {
+            if ((int) Run.inBetween(1, 25) == 1) {
                 System.out.println(
                         "You tried reaching something from the top shelf and suddenly you broke your hip and are sent to the hospital immediately.");
                 // add hospital method for broken hip lmao
@@ -426,6 +486,8 @@ public class Story {
         if (chance <= check) {
             p.addMoney(amtErnd);
             System.out.println("Your investment has succeded, and you have earned $" + amtErnd + "!");
+        } else {
+            System.out.println("Your investment has failed, and you have lost $" + amtErnd + "!");
         }
     }
 
@@ -438,12 +500,13 @@ public class Story {
     // Sketchy: costs between $10 - $100 for each "1" health at sketchy clinic
     public void goToHospital() {
         int    healthNeeded = 100 - p.getHealth();
-        double cashN  = healthNeeded * 100.0 * Run.inBetween(1, 10);
-        double cashNormal = Run.moneySimplify(cashN);
+        double cashN        = healthNeeded * 100.0 * Run.inBetween(1, 10);
+        double cashNormal   = Run.moneySimplify(cashN);
         System.out.println("It will cost $" + cashNormal + " to choose a safe hospital");
         int chanceItsBad = (int) (100.0 * Math.random());
         double cashG   = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
         double cashGhetto = Run.moneySimplify(cashG);
+
         System.out.println("or");
         System.out.println("It will cost $" + cashGhetto
                 + "to choose a sketchy hospital, BUT things may not go as planned... \n There is a " + chanceItsBad
