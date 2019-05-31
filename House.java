@@ -165,8 +165,7 @@ public class House {
     public void buyHouse() {
         p.removeMoney(initialPayment);
         downPayment(initialPayment);
-        System.out.println("Congratulations! You bought a house and put a downpayment of :$" + initialPayment
-                + "down on the house.");
+        System.out.println("Congratulations! You bought a house and put a downpayment of :$" + initialPayment + "down on the house.");
         house = true;
     }
 
@@ -214,10 +213,10 @@ public class House {
     // sleeping arrangements they have (scaled)
     public void checkHousing() {
         if (house == true) {
-            p.addHealth(5);
+            p.addHealth(2);
             System.out.println("You gained 5 health for owning a house this year");
         } else if (apartment == true) {
-            p.addHealth(3);
+            p.addHealth(1);
             System.out.println("You gained 3 health for owning an apartment this year");
         } else {
             p.removeHealth(2);
