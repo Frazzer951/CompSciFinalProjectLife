@@ -47,7 +47,7 @@ public class Story {
     public void yearStart() {
         // Prints Out Needed Information
         System.out.println(p.getName() + "\'s health is at " + p.getHealth() + ". \n" + "Your bank balance is "
-                + p.getBal() + ", \n" + "and your age is " + p.getAge());
+                + p.getBal() + ", \n" + "and your age is " + p.getAge() + ", \n" + "and your happiness is " + p.getHappiness());
 
         System.out.println("Would You like to do anything this year? Type \'Yes\' or \'No\'");
 
@@ -150,7 +150,7 @@ public class Story {
                 }
                 else if(home.hasHouse == true || home.hasApartment == true)
                 {
-                    System.out.println("Would you like to sell your house or get out of an apartment lease? type \'New Place\'");
+                    System.out.println("Would you like to sell your house or get out of an apartment lease? type \'NewPlace\'");
                     System.out.println("Would you like to see how much you've paid off? type \'Check Payment\'");
                 }
                 if (p.getHealth() < 100) {
@@ -294,7 +294,7 @@ public class Story {
                 return false;
             }
             
-            if(dec.equals("New Place"))
+            if(dec.equals("NewPlace"))
             {
                 System.out.println("Are you sure?");
                 System.out.println("Yes or no");
@@ -351,7 +351,7 @@ public class Story {
         // Checks to see if have a home/apartment and makes you pay rent/mortgage each year
         home.payYearly();
         // Checks if you have housing to determine health improvement
-        if(p.getAge >= 18)
+        if(p.getAge() >= 18)
         {
             home.checkHousing();
         }
@@ -441,7 +441,7 @@ public class Story {
         double cashN  = healthNeeded * 100.0 * Run.inBetween(1, 10);
         double cashNormal = Run.moneySimplify(cashN);
         System.out.println("It will cost $" + cashNormal + " to choose a safe hospital");
-        double chanceItsBad = 100.0 * Math.random();
+        int chanceItsBad = (int) (100.0 * Math.random());
         double cashG   = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
         double cashGhetto = Run.moneySimplify(cashG);
         System.out.println("or");
