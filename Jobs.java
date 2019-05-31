@@ -101,15 +101,40 @@ public class Jobs {
         return employed;
     }
 
-    /*
-     * private void jobChange() { double chance1 = Math.random() * 100.0; double inc
-     * = p.getIncome(); if (chance1 <= 10) { p.changeIncome(inc += (inc / 10.0));
-     * System.out.println("You got a raise for doing well!"); } else if (chance1 >=
-     * 95) { p.changeIncome(0.0); System.out.println("You got fired!"); } else if
-     * (chance1 > 10 && chance1 < 15) { p.changeIncome(inc -= (inc / 10.0));
-     * System.out.
-     * println("You made a bad call at work, and your pay has been docked"); } }
-     */
+    public void setEmployed(boolean x) {
+        employed = x;
+    }
+
+    public void jobRandom() {
+        int choice = (int) Run.inBetween(1, 3);
+
+        if (choice == 1) {
+            int possibility = (int) Run.inBetween(1, 20);
+            if (possibility == 1) {
+                System.out.println("You got a raise and your pay goes up by 5%");
+                double newPay = (jobIncome * .05) + jobIncome;
+                jobIncome = newPay;
+                p.changeIncome(newPay);
+            }
+        } else if (choice == 2) {
+            int possibility = (int) Run.inBetween(1, 40);
+            if (possibility == 1) {
+                System.out.println("You made a bad call at work and your pay goes down by 5%");
+                double newPay = jobIncome - (jobIncome * .05);
+                jobIncome = newPay;
+                p.changeIncome(newPay);
+            }
+        } else if (choice == 3) {
+            int possibility = (int) Run.inBetween(1, 50);
+            if (possibility == 1) {
+                System.out.println("Oh no Gamer, you boss caught you play farmvill at work and fired you!");
+                jobIncome = 0;
+                jobTitle  = "";
+                p.changeIncome(0);
+                setEmployed(false);
+            }
+        }
+    }
 
     /*
      * Calculates the chance someone has when they choose a job. The higher the pay,
@@ -132,5 +157,13 @@ public class Jobs {
         }
         double chance = ((1 / (1 + (pay / 50000.0) * mult)) + workE) * 100.0;
         return chance;
+    }
+
+    public void quitJob() {
+        p.changeIncome(0);
+        jobIncome = 0;
+        jobTitle  = "";
+        setEmployed(false);
+        System.out.println("You have quit your job.");
     }
 }
