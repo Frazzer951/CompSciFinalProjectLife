@@ -25,7 +25,7 @@ public class Person {
 
     // Adds Money to Balance
     public void addMoney(double x) {
-        bal += x;
+        bal += Run.moneySimplify(x);
     }
 
     // Removes Money from Balance

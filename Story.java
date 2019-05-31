@@ -380,7 +380,7 @@ public class Story {
         // year
         home.payYearly();
         // Checks if you have housing to determine health improvement
-        if(p.getAge >= 18)
+        if(p.getAge() >= 18)
         {
             home.checkHousing();
         }
