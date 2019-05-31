@@ -7,10 +7,13 @@ Info:
 
 TODO:
 
+    Ideas:
+        Diseases
+
     Story Class:
-        [] Add more option in the job class (Job Titles)
-        [] make a "house option" with taking away a rent from the balance/income each month
-        [] impliment the house method so it can be used in the story class
+        [x] Add more option in the job class (Job Titles)
+        [x] make a "house option" with taking away a rent from the balance/income each month
+        [x] impliment the house method so it can be used in the story class
         [] Comment on all the methods and class declaring what everything does
-        [] Add More Random Chances
-        [] Add More Choices (Child Hood Is very Boring Now)
+        [x] Add More Random Chances
+        [x] Add More Choices (Child Hood Is very Boring Now)

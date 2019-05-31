@@ -4,6 +4,7 @@
  */
 
 import java.util.Scanner;
+
 import java.lang.Math;
 
 public class Run {
@@ -14,13 +15,14 @@ public class Run {
         System.out.println("Please enter your name : ");
         String s = input.next(); // getting a String value
 
-        // Creates Person with name starting with 0 cash and 100 income
-        // Your income is $100 because that is your allowance from your parents
-        Person p    = new Person(s, 0.0, 100.0);
+        // Creates Person with name starting with 0 cash and 20 income
+        // Your income is $20 because that is your allowance from your parents
+        Person p    = new Person(s, 0.0, 20.0);
         Jobs   work = new Jobs(p, input);
-        House home = new House(p, input);
+        House  home = new House(p, input);
         Story  life = new Story(p, work, home, input);
 
+        System.out.println("Each year you lose 5% of your health");
         while (!life.gameOver()) {
             life.yearStart();
 
@@ -34,14 +36,19 @@ public class Run {
         input.close();
     }
 
-    //Returns A Random Number In a Range
+    // Returns A Random Number In a Range
     public static double inBetween(double min, double max) {
         return (Math.random() * ((max - min) + 1.0)) + min;
     }
 
-    //Takes a double and takes it to only 2 decimal places
+    // Takes a double and takes it to only 2 decimal places
     public static double moneySimplify(double x) {
         return (int) (x * 100) / 100.0;
+    }
+
+    public static void pause(Scanner input) {
+        System.out.println("Press Enter To Continue");
+        input.next();
     }
 
     public final static void clearConsole() {

@@ -14,7 +14,6 @@ public class House {
     private String     houseType;
     private boolean    house                 = false;
     private boolean    apartment             = false;
-    private int        initialPayment        = buyValue / 10;
     private static int initialDeposit        = 1800;
     private static int yearlyApartmentCharge = 18000;
     String[]           totalHouseList        = { "Mansion", "Beach House", "Cottage", "Farm House", "Villa", "Castle",
@@ -51,13 +50,13 @@ public class House {
 
             System.out.println("Here are your house options.");
             System.out.println("Choice 1: " + expensiveHouseList[option1] + " for $" + price1
-                    + " with an initial downpayment of " + price1 / 10 + " and a fixed yearly mortgage of "
+                    + " with an initial downpayment of " + price1 / 10.0 + " and a fixed yearly mortgage of "
                     + ((price1 - price1 / 10) / 30) + " due at the end of each year");
             System.out.println("Choice 2: " + regularHouseList[option2] + " for $" + price2
-                    + " with an initial downpayment of " + price2 / 10 + " and a fixed yearly mortgage of "
+                    + " with an initial downpayment of " + price2 / 10.0 + " and a fixed yearly mortgage of "
                     + ((price2 - price2 / 10) / 30) + " due at the end of each year");
             System.out.println("Choice 3: " + cheapHouseList[option3] + " for $" + price3
-                    + " with an initial downpayment of " + price3 / 10 + " and a fixed yearly mortgage of "
+                    + " with an initial downpayment of " + price3 / 10.0 + " and a fixed yearly mortgage of "
                     + ((price3 - price3 / 10) / 30) + " due at the end of each year");
 
             System.out.println("Input the number for your choice 1-3 : ");
@@ -69,9 +68,9 @@ public class House {
                 if (choice == 1) {
                     if (p.getBal() > (price1 / 10)) {
                         buyValue           = price1;
-                        yearlyHousePayment = ((price1 - price1 / 10) / 30);
+                        yearlyHousePayment = ((price1 - (price1 / 10)) / 30);
                         houseType          = expensiveHouseList[option1];
-                        buyHouse(yearlyHousePayment);
+                        buyHouse(price1 / 10);
                         madeChoice = true;
 
                     } else {
@@ -83,7 +82,7 @@ public class House {
                         buyValue           = price2;
                         yearlyHousePayment = ((price2 - price2 / 10) / 30);
                         houseType          = regularHouseList[option2];
-                        buyHouse(yearlyHousePayment);
+                        buyHouse(price1 / 10);
                         madeChoice = true;
                     } else {
                         System.out.println("You can't afford the downpayment on this house, try again another time");
@@ -94,7 +93,7 @@ public class House {
                         buyValue           = price3;
                         yearlyHousePayment = ((price3 - price3 / 10) / 30);
                         houseType          = regularHouseList[option3];
-                        buyHouse(yearlyHousePayment);
+                        buyHouse(price1 / 10);
                         madeChoice = true;
                     } else {
                         System.out.println("You can't afford the downpayment on this house, try again another time");
@@ -165,8 +164,8 @@ public class House {
     public void buyHouse(int payment) {
         p.removeMoney(payment);
         downPayment(payment);
-        System.out.println("Congratulations! You bought a house and put a downpayment of :$" + initialPayment
-                + "down on the house.");
+        System.out.println(
+                "Congratulations! You bought a house and put a downpayment of :$" + payment + "down on the house.");
         house = true;
     }
 
@@ -224,6 +223,10 @@ public class House {
             System.out.println(
                     "You lost 2 health for not owning any property this year and are forced to live on the streets");
         }
+    }
+
+    public String getHouseType() {
+        return houseType;
     }
 
     public void howMuchPaidOff() {

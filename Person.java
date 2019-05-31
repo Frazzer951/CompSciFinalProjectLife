@@ -30,7 +30,7 @@ public class Person {
 
     // Removes Money from Balance
     public void removeMoney(double x) {
-        bal -= x;
+        bal -= Run.moneySimplify(x);
     }
 
     // Adds Health and makes sure it's not over 100
