@@ -153,7 +153,6 @@ public class Story {
                     System.out.println("Would you like to sell your house or get out of an apartment lease? type \'New Place\'");
                     System.out.println("Would you like to see how much you've paid off? type \'Check Payment\'");
                 }
-                else if()
                 if (p.getHealth() < 100) {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
                 }
@@ -352,7 +351,10 @@ public class Story {
         // Checks to see if have a home/apartment and makes you pay rent/mortgage each year
         home.payYearly();
         // Checks if you have housing to determine health improvement
-        home.checkHousing();
+        if(p.getAge >= 18)
+        {
+            home.checkHousing();
+        }
         // Get Yearly Income Pay
         p.payday();
         // Adds a year to your age
