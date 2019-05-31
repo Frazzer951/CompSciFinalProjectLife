@@ -71,7 +71,7 @@ public class House {
                         buyValue           = price1;
                         yearlyHousePayment = ((price1 - price1 / 10) / 30);
                         houseType          = expensiveHouseList[option1];
-                        buyHouse();
+                        buyHouse(yearlyHousePayment);
                         madeChoice = true;
 
                     } else {
@@ -83,7 +83,7 @@ public class House {
                         buyValue           = price2;
                         yearlyHousePayment = ((price2 - price2 / 10) / 30);
                         houseType          = regularHouseList[option2];
-                        buyHouse();
+                        buyHouse(yearlyHousePayment);
                         madeChoice = true;
                     } else {
                         System.out.println("You can't afford the downpayment on this house, try again another time");
@@ -94,7 +94,7 @@ public class House {
                         buyValue           = price3;
                         yearlyHousePayment = ((price3 - price3 / 10) / 30);
                         houseType          = regularHouseList[option3];
-                        buyHouse();
+                        buyHouse(yearlyHousePayment);
                         madeChoice = true;
                     } else {
                         System.out.println("You can't afford the downpayment on this house, try again another time");
@@ -162,10 +162,11 @@ public class House {
 
     // Called upon when asked if they want a house/apartment at the end of each year
     // and chose house
-    public void buyHouse() {
-        p.removeMoney(initialPayment);
-        downPayment(initialPayment);
-        System.out.println("Congratulations! You bought a house and put a downpayment of :$" + initialPayment + "down on the house.");
+    public void buyHouse(int payment) {
+        p.removeMoney(payment);
+        downPayment(payment);
+        System.out.println("Congratulations! You bought a house and put a downpayment of :$" + initialPayment
+                + "down on the house.");
         house = true;
     }
 

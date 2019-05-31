@@ -47,7 +47,8 @@ public class Story {
     public void yearStart() {
         // Prints Out Needed Information
         System.out.println(p.getName() + "\'s health is at " + p.getHealth() + ". \n" + "Your bank balance is "
-                + p.getBal() + ", \n" + "and your age is " + p.getAge() + ", \n" + "and your happiness is " + p.getHappiness());
+                + p.getBal() + ", \n" + "and your age is " + p.getAge() + ", \n" + "and your happiness is "
+                + p.getHappiness());
 
         System.out.println("Would You like to do anything this year? Type \'Yes\' or \'No\'");
 
@@ -70,7 +71,7 @@ public class Story {
             while (true) {
                 System.out.println(
                         "You are in the debug menu, type \'end\' to get out, \'stop\' to never see this again");
-                System.out.println("\'Age\' for age, \'Hp\' for health, \'Hap\' for happiness, ");
+                System.out.println("\'Age\' for age, \'Hp\' for health, \'Hap\' for happiness, \'Mon\' for money");
                 String debugChoice = input.next();
                 if (debugChoice.equals("end")) {
                     break;
@@ -94,6 +95,10 @@ public class Story {
                 if (debugChoice.equals("Hap")) {
                     System.out.println("Input Happiness: ");
                     p.setHap(input.nextInt());
+                }
+                if (debugChoice.equals("Mon")) {
+                    System.out.println("Input Money: ");
+                    p.addMoney(input.nextDouble());
                 }
             }
         }
@@ -139,18 +144,15 @@ public class Story {
                 System.out.println("If you want to invest your money type \'Invest\'");
                 System.out.println("Would you like to go to the club? type \'Club\'");
 
-
                 if (career.hasJob() == false) {
                     System.out.println("If you want to get a job type \'Job\'");
                 }
-                
-                if (home.hasHouse() == false)
-                {
+
+                if (home.hasHouse() == false) {
                     System.out.println("Would you like to buy a house or rent an apartment? type \'House\'");
-                }
-                else if(home.hasHouse() == true || home.hasApartment() == true)
-                {
-                    System.out.println("Would you like to sell your house or get out of an apartment lease? type \'NewPlace\'");
+                } else if (home.hasHouse() == true || home.hasApartment() == true) {
+                    System.out.println(
+                            "Would you like to sell your house or get out of an apartment lease? type \'NewPlace\'");
                     System.out.println("Would you like to see how much you've paid off? type \'Check Payment\'");
                 }
                 if (p.getHealth() < 100) {
@@ -235,12 +237,11 @@ public class Story {
                     System.out.println(
                             "How much would you like to invest, you have $" + p.getBal() + " in your bank account");
                     int amt = input.nextInt();
-                    if(p.getBal() >= amt)
-                    {
+                    if (p.getBal() >= amt) {
                         p.removeMoney(amt);
                         invest(amt, chance);
                         return false;
-                    }else{
+                    } else {
                         System.out.println("You dont have that much money!");
                         return false;
                     }
@@ -311,26 +312,20 @@ public class Story {
                 career.quitJob();
             }
 
-            if(dec.equals("House"))
-            {
+            if (dec.equals("House")) {
                 home.houseOptions();
                 return false;
             }
-            
-            if(dec.equals("NewPlace"))
-            {
+
+            if (dec.equals("NewPlace")) {
                 System.out.println("Are you sure?");
                 System.out.println("Yes or no");
                 String conf = input.next();
-                if(conf.equals("Yes"))
-                {
-                    if(home.hasHouse() == true)
-                    {
+                if (conf.equals("Yes")) {
+                    if (home.hasHouse() == true) {
                         home.sellHouse();
                         home.houseOptions();
-                    }
-                    else if(home.hasApartment() == true)
-                    {
+                    } else if (home.hasApartment() == true) {
                         home.stopApartment();
                         home.houseOptions();
                     }
@@ -338,8 +333,7 @@ public class Story {
                 return false;
             }
 
-            if(dec.equals("Check Payment"))
-            {
+            if (dec.equals("Check Payment")) {
                 home.howMuchPaidOff();
                 return false;
             }
@@ -380,8 +374,7 @@ public class Story {
         // year
         home.payYearly();
         // Checks if you have housing to determine health improvement
-        if(p.getAge() >= 18)
-        {
+        if (p.getAge() >= 18) {
             home.checkHousing();
         }
         // Get Yearly Income Pay
@@ -503,9 +496,9 @@ public class Story {
         double cashN        = healthNeeded * 100.0 * Run.inBetween(1, 10);
         double cashNormal   = Run.moneySimplify(cashN);
         System.out.println("It will cost $" + cashNormal + " to choose a safe hospital");
-        int chanceItsBad = (int) (100.0 * Math.random());
-        double cashG   = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
-        double cashGhetto = Run.moneySimplify(cashG);
+        int    chanceItsBad = (int) (100.0 * Math.random());
+        double cashG        = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
+        double cashGhetto   = Run.moneySimplify(cashG);
 
         System.out.println("or");
         System.out.println("It will cost $" + cashGhetto
