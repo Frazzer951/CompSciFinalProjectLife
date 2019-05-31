@@ -139,10 +139,21 @@ public class Story {
                 System.out.println("If you want to invest your money type \'Invest\'");
                 System.out.println("Would you like to go to the club? type \'Club\'");
 
+
                 if (career.hasJob() == false) {
                     System.out.println("If you want to get a job type \'Job\'");
                 }
-
+                
+                if (home.hasHouse == false)
+                {
+                    System.out.println("Would you like to buy a house or rent an apartment? type \'House\'");
+                }
+                else if(home.hasHouse == true || home.hasApartment == true)
+                {
+                    System.out.println("Would you like to sell your house or get out of an apartment lease? type \'New Place\'");
+                    System.out.println("Would you like to see how much you've paid off? type \'Check Payment\'");
+                }
+                else if()
                 if (p.getHealth() < 100) {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
                 }
@@ -221,10 +232,15 @@ public class Story {
                     System.out.println(
                             "How much would you like to invest, you have $" + p.getBal() + " in your bank account");
                     int amt = input.nextInt();
-
-                    p.removeMoney(amt);
-                    invest(amt, chance);
-                    return false;
+                    if(p.getbal() >= amt)
+                    {
+                        p.removeMoney(amt);
+                        invest(amt, chance);
+                        return false;
+                    }else{
+                        System.out.println("You dont have that much money!");
+                        return false;
+                    }
                 }
             }
 
@@ -273,6 +289,39 @@ public class Story {
                 }
             }
 
+            if(dec.equals("House"))
+            {
+                home.houseOptions();
+                return false;
+            }
+            
+            if(dec.equals("New Place"))
+            {
+                System.out.println("Are you sure?");
+                System.out.println("Yes or no");
+                String conf = input.next();
+                if(conf.equals("Yes"))
+                {
+                    if(home.hasHouse == true)
+                    {
+                        home.sellHouse();
+                        home.houseOptions();
+                    }
+                    else if(home.hasApartment == true)
+                    {
+                        home.stopApartment();
+                        home.houseOptions();
+                    }
+                }
+                return false;
+            }
+
+            if(dec.equals("Check Payment"))
+            {
+                home.howMuchPaidOff();
+                return false;
+            }
+
             if (dec.equals("Done")) {
                 return true;
             }
@@ -299,6 +348,11 @@ public class Story {
         if (p.getAge() == 15) {
             p.changeIncome(0);
         }
+
+        // Checks to see if have a home/apartment and makes you pay rent/mortgage each year
+        home.payYearly();
+        // Checks if you have housing to determine health improvement
+        home.checkHousing();
         // Get Yearly Income Pay
         p.payday();
         // Adds a year to your age
@@ -382,13 +436,15 @@ public class Story {
     // Sketchy: costs between $10 - $100 for each "1" health at sketchy clinic
     public void goToHospital() {
         int    healthNeeded = 100 - p.getHealth();
-        double cashNormal   = healthNeeded * 100.0 * Run.inBetween(1, 10);
-        System.out.println("It will cost $" + cashNormal + "to choose a safe hospital");
+        double cashN  = healthNeeded * 100.0 * Run.inBetween(1, 10);
+        double cashNormal = Run.moneySimplify(cashN);
+        System.out.println("It will cost $" + cashNormal + " to choose a safe hospital");
         double chanceItsBad = 100.0 * Math.random();
-        double cashGhetto   = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
+        double cashG   = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
+        double cashGhetto = Run.moneySimplify(cashG);
         System.out.println("or");
         System.out.println("It will cost $" + cashGhetto
-                + "to choose a sketchy hospital, BUT things may not go as planned... \n There is a" + chanceItsBad
+                + "to choose a sketchy hospital, BUT things may not go as planned... \n There is a " + chanceItsBad
                 + "% chance it will go wrong");
         System.out.println("Please type: \'safe\' or \'sketchy\' or \'none\'");
         String choice = input.next();

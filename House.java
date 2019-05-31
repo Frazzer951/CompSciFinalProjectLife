@@ -100,8 +100,14 @@ public class House {
                         System.out.println("You can't afford the downpayment on this house, try again another time");
                         madeChoice = true;
                     }
-                } else {
-                    System.out.println("You must put a number between 1 and 3");
+                } else if(choice == 4) {
+                    System.out.println("You have chosen to look at the apartment options");
+                    apartmentOptions();
+                    madeChoice = true;
+                }
+                
+                 else {
+                    System.out.println("You must put a number between 1 and 4");
                 }
             }
 
@@ -111,7 +117,7 @@ public class House {
 
     public void apartmentOptions() {
         System.out.println("There is an apartment offered at a price of $" + yearlyApartmentCharge + " annually");
-        System.out.println("Choose 1 to rent this apartment or 2 to wait till next year");
+        System.out.println("Choose 1 to rent this apartment or 2 to wait till next year or 3 to go back to house options");
         boolean madeChoice = false;
 
         while (!madeChoice) {
@@ -122,8 +128,13 @@ public class House {
             } else if (choice == 2) {
                 madeChoice = true;
 
-            } else {
-                System.out.println("You must choose 1 or 2");
+            } else if(choice == 3) {
+                System.out.println("You've decided to go back to the house options");
+                houseOptions();
+                madeChoice = true;
+            }
+             else {
+                System.out.println("You must choose between 1 and 3");
             }
         }
     }
@@ -172,10 +183,24 @@ public class House {
     // value
     public void sellHouse() {
         if (house == true) {
-            p.addMoney((buyValue * .9));
+            p.addMoney((amountPayed * .9));
+            System.out.println("You gained $" + (amountPayed*.9) + " for selling your house");
             house = false;
         } else {
             System.out.println("You don't own a house");
+        }
+    }
+
+    public void stopApartment()
+    {
+        if(apartment == true)
+        {
+            apartment == false;
+            System.out.println("You got out of your apartment contract.");
+        }
+        else
+        {
+            System.out.println("You don't own an apartment");
         }
     }
 
@@ -194,11 +219,20 @@ public class House {
     public void checkHousing() {
         if (house == true) {
             p.addHealth(5);
+            System.out.println("You gained 5 health for owning a house this year");
         } else if (apartment == true) {
             p.addHealth(3);
+            System.out.println("You gained 3 health for owning an apartment this year");
         } else {
-            p.addHealth(1);
+            p.removeHealth(2);
+            System.out.println("You lost 2 health for not owning any property this year and are forced to live on the streets");
         }
+    }
+
+    public void howMuchPaidOff()
+    {
+        System.out.println("You have paid $" + amountPayed + " out of " + buyValue + " on your house.");
+        
     }
 
 }

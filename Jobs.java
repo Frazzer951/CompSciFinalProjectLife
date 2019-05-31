@@ -15,7 +15,7 @@ public class Jobs {
     private static boolean employed = false;
 
     String[] jobList = { "Carpenter", "Zoologist", "Mason", "Librarian", "Farmer", "Teacher", "Therapist", "IT Manager",
-            "Painter", "Receptionist" };
+            "Painter", "Receptionist", "Programmer", "Firefighter", "Judge", "Chef"};
 
     public Jobs(Person p, Scanner input) {
         this.p     = p;
