@@ -144,16 +144,15 @@ public class Story {
                     System.out.println("If you want to get a job type \'Job\'");
                 }
                 
-                if (home.hasHouse == false)
+                if (home.hasHouse() == false)
                 {
                     System.out.println("Would you like to buy a house or rent an apartment? type \'House\'");
                 }
-                else if(home.hasHouse == true || home.hasApartment == true)
+                else if(home.hasHouse() == true || home.hasApartment() == true)
                 {
                     System.out.println("Would you like to sell your house or get out of an apartment lease? type \'New Place\'");
                     System.out.println("Would you like to see how much you've paid off? type \'Check Payment\'");
                 }
-                else if()
                 if (p.getHealth() < 100) {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\''");
                 }
@@ -236,7 +235,7 @@ public class Story {
                     System.out.println(
                             "How much would you like to invest, you have $" + p.getBal() + " in your bank account");
                     int amt = input.nextInt();
-                    if(p.getbal() >= amt)
+                    if(p.getBal() >= amt)
                     {
                         p.removeMoney(amt);
                         invest(amt, chance);
@@ -325,12 +324,12 @@ public class Story {
                 String conf = input.next();
                 if(conf.equals("Yes"))
                 {
-                    if(home.hasHouse == true)
+                    if(home.hasHouse() == true)
                     {
                         home.sellHouse();
                         home.houseOptions();
                     }
-                    else if(home.hasApartment == true)
+                    else if(home.hasApartment() == true)
                     {
                         home.stopApartment();
                         home.houseOptions();
@@ -377,7 +376,8 @@ public class Story {
             System.out.println("You no longer get allowance and must now get a job");
         }
 
-        // Checks to see if have a home/apartment and makes you pay rent/mortgage each year
+        // Checks to see if have a home/apartment and makes you pay rent/mortgage each
+        // year
         home.payYearly();
         // Checks if you have housing to determine health improvement
         home.checkHousing();
@@ -497,12 +497,12 @@ public class Story {
     // Sketchy: costs between $10 - $100 for each "1" health at sketchy clinic
     public void goToHospital() {
         int    healthNeeded = 100 - p.getHealth();
-        double cashN  = healthNeeded * 100.0 * Run.inBetween(1, 10);
-        double cashNormal = Run.moneySimplify(cashN);
+        double cashN        = healthNeeded * 100.0 * Run.inBetween(1, 10);
+        double cashNormal   = Run.moneySimplify(cashN);
         System.out.println("It will cost $" + cashNormal + " to choose a safe hospital");
         double chanceItsBad = 100.0 * Math.random();
-        double cashG   = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
-        double cashGhetto = Run.moneySimplify(cashG);
+        double cashG        = healthNeeded * 10.0 * Run.inBetween(1, 10) * (chanceItsBad / 100.0);
+        double cashGhetto   = Run.moneySimplify(cashG);
         System.out.println("or");
         System.out.println("It will cost $" + cashGhetto
                 + "to choose a sketchy hospital, BUT things may not go as planned... \n There is a " + chanceItsBad
