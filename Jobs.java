@@ -8,20 +8,25 @@ import java.lang.Math;
 
 public class Jobs {
 
+    // Declares all of the variables
     private Person         p;
     private Scanner        input;
     private static double  jobIncome;
     private static String  jobTitle;
     private static boolean employed = false;
 
+    // All of the possible jobs
     String[] jobList = { "Carpenter", "Zoologist", "Mason", "Librarian", "Farmer", "Teacher", "Therapist", "IT Manager",
-            "Painter", "Receptionist", "Programmer", "Firefighter", "Judge", "Chef"};
+            "Painter", "Receptionist", "Programmer", "Firefighter", "Judge", "Chef" };
 
+    // Constructor for jobs class
     public Jobs(Person p, Scanner input) {
         this.p     = p;
         this.input = input;
     }
 
+    // When called it randomly generates jobs and gives the player a choice
+    // There is a random percent chance of getting a job
     public void jobOptions() {
         double mul = 1.0;
         if (p.getCollege() == true) {
@@ -89,22 +94,22 @@ public class Jobs {
 
     }
 
-    public void randomJobChance() {
-
-    }
-
+    // Returns your job's title
     public String jobName() {
         return jobTitle;
     }
 
+    // Returns if you have a job
     public boolean hasJob() {
         return employed;
     }
 
+    // Sets if you are employed or not
     public void setEmployed(boolean x) {
         employed = x;
     }
 
+    // Random chances for if you have a job
     public void jobRandom() {
         int choice = (int) Run.inBetween(1, 3);
 
@@ -159,6 +164,7 @@ public class Jobs {
         return chance;
     }
 
+    // If you chose to quit your job it removes all of your job info
     public void quitJob() {
         p.changeIncome(0);
         jobIncome = 0;

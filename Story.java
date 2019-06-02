@@ -8,6 +8,7 @@ import java.lang.Math;
 
 public class Story {
 
+    // Declares all variables used in this class
     private Person        p;
     private Jobs          career;
     private House         home;
@@ -44,6 +45,8 @@ public class Story {
         return false;
     }
 
+    // Year start function
+    // Gives the player needed info and asks if they wish to do anything
     public void yearStart() {
         // Prints Out Needed Information
         System.out.println(p.getName() + "\'s health is at " + p.getHealth() + ". \n" + "Your bank balance is "
@@ -52,6 +55,9 @@ public class Story {
 
         System.out.println("Would You like to do anything this year? Type \'Yes\' or \'No\'");
 
+        // A loop to ask if the player wants to do anything this year. It is a loop so
+        // if they player accidentally types something is will tell them and they dont
+        // miss out on the chance of doing something
         while (true) {
             String choice = input.next();
 
@@ -68,6 +74,8 @@ public class Story {
             System.out.println("You must type \'Yes\' or \'No\'");
         }
 
+        // Debug Options, If your name is Debug you can access this menu and alter
+        // different variables to test things out
         if (p.getName().equals("Debug") && debugDisable == false) {
             while (true) {
                 System.out.println(
@@ -105,10 +113,10 @@ public class Story {
         }
     }
 
+    // All of the players possible choices. It prints out what they can do, then ask
+    // them if they want to do anything and to type what they want
     public boolean choices() {
-
         boolean choiceMade = false;
-
         while (choiceMade == false) {
             // Child Choices
             if (ageGroup.equals("CHILD")) {
@@ -190,7 +198,9 @@ public class Story {
 
             System.out.println("If you do not want to do anything else type \'Done\'");
 
+            // Gets the users input for what they wish to do
             String dec = input.next();
+
             if (dec.equals("Friends")) {
                 int hap = (int) (Math.random() * 100);
                 System.out.println("You hang out with friends and you happiness goes up by " + hap);
@@ -265,7 +275,7 @@ public class Story {
                 System.out.println("You go to the park and gained " + parkHap + " happiness.");
                 p.addHappiness(parkHap);
                 if ((int) Run.inBetween(1, 5) == 1) {
-                    System.out.println("While at the park you triped and fell, losing " + parkHel + " health.");
+                    System.out.println("While at the park you tripped and fell, losing " + parkHel + " health.");
                     p.removeHealth(parkHel);
                 }
                 if ((int) Run.inBetween(1, 5) == 1) {
@@ -380,7 +390,7 @@ public class Story {
             }
 
             System.out.println(
-                    "You either didnt enter the proper text, or you entered something that is not a choice, try again.");
+                    "You either didn't enter the proper text, or you entered something that is not a choice, try again.");
         }
 
         return true;
@@ -388,6 +398,8 @@ public class Story {
     }
 
     // Year End Function
+    // Calls all the methods based on what they player has done and then calls on
+    // the random method to see what random things might happen
     public void yearEnd() {
 
         if (chooseDie) {
@@ -424,12 +436,12 @@ public class Story {
     }
 
     /*
-     * Random chance of certain events occuring: finding money on the ground,
+     * Random chance of certain events occurring: finding money on the ground,
      * breaking your hip, getting robbed
      */
     public void randomChance(String ageGroup) {
         double randomMoney  = Run.moneySimplify(Run.inBetween(1, 10000));
-        int    randomHealth = (int) (Run.inBetween(1, 90));
+        int    randomHealth = (int) (Run.inBetween(1, 70));
         if (ageGroup.equals("CHILD")) {
             if ((int) Run.inBetween(1, 10) == 1) {
                 System.out.println("While running trough the park you trip and hit your arm, you lose " + randomHealth
@@ -448,7 +460,7 @@ public class Story {
                 } else {
                     int comaYears = (int) Run.inBetween(1, 4);
                     System.out.println("You drink a strange liquid and gain " + comaYears
-                            + " years of age. Acording to your parents you were in a coma.");
+                            + " years of age. According to your parents you were in a coma.");
                     p.addAge(comaYears);
                 }
             }
@@ -498,9 +510,8 @@ public class Story {
                 p.addMoney(randomMoney);
             }
             if ((int) Run.inBetween(1, 25) == 1) {
-                System.out.println(
-                        "You tried reaching something from the top shelf and suddenly you broke your hip and are sent to the hospital immediately.");
-                // add hospital method for broken hip lmao
+                System.out.println("You tried reaching something from the top shelf and suddenly you broke your hip.");
+                p.removeHealth(randomHealth);
             }
         }
     }
@@ -514,14 +525,14 @@ public class Story {
 
         if (chance <= check) {
             p.addMoney(amtErnd);
-            System.out.println("Your investment has succeded, and you have earned $" + amtErnd + "!");
+            System.out.println("Your investment has succeeded, and you have earned $" + amtErnd + "!");
         } else {
             System.out.println("Your investment has failed, and you have lost $" + amt + "!");
         }
     }
 
     // Provides person with 2 choice to repair health
-    // Either go to a safe hopistal (more expensive) or a sketchy hospital (less
+    // Either go to a safe hospital (more expensive) or a sketchy hospital (less
     // expensive)
     // If they choose sketchy hospital they have a chance for it go wrong and lose
     // more health

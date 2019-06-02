@@ -75,32 +75,39 @@ public class Person {
         happiness -= x;
     }
 
+    // Sets Happiness
     public void setHap(int x) {
         happiness = x;
     }
 
+    // When you chose to go to college is will set that you have gone and will take
+    // the cost out of your wallet
     public void wentToCollege(double price) {
         bal     -= price;
         college  = true;
     }
 
+    // Adds X amount of years to your age
     public void addAge(int x) {
         age += x;
     }
 
+    // Sets you age to equal x
     public void setAge(int x) {
         age = x;
     }
 
+    // Returns your age
     public int getAge() {
         return age;
     }
 
+    // Returns if you have gone to college
     public boolean getCollege() {
         return college;
     }
 
-    // Returnes the Balance
+    // Returns the Balance
     public double getBal() {
         return bal;
     }
@@ -135,10 +142,12 @@ public class Person {
         return numChildren;
     }
 
+    // Adds a year to your work experience
     public void addWorkExperience(int ad) {
         workExperience += ad;
     }
 
+    // Returns your amount of years worked
     public int getWorkExperience() {
         return workExperience;
     }

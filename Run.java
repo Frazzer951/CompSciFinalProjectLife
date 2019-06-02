@@ -11,28 +11,32 @@ public class Run {
 
     public static void main(String[] args) {
         // Gets User Input for Name
+        // Information used to make the scanner class was found on Stack Overflow
         Scanner input = new Scanner(System.in);
         System.out.println("Please enter your name : ");
-        String s = input.next(); // getting a String value
+        String name = input.next();
 
         // Creates Person with name starting with 0 cash and 20 income
         // Your income is $20 because that is your allowance from your parents
-        Person p    = new Person(s, 0.0, 20.0);
+        Person p    = new Person(name, 0.0, 20.0);
         Jobs   work = new Jobs(p, input);
         House  home = new House(p, input);
         Story  life = new Story(p, work, home, input);
 
+        // Tells the player of a game mechanic then starts main loop
+        // Starts by calling the year start, then it clears the console and calls year
+        // end
         System.out.println("Each year you lose 5% of your health");
         while (!life.gameOver()) {
             life.yearStart();
-
             clearConsole();
-
             life.yearEnd();
         }
 
+        // Tells the player they have lost
         System.out.println("You have lost the game");
 
+        // Closes the input object
         input.close();
     }
 
@@ -46,11 +50,16 @@ public class Run {
         return (int) (x * 100) / 100.0;
     }
 
+    // A method used when you want to pause the game so the player can read what
+    // happened
     public static void pause(Scanner input) {
-        System.out.println("Press Enter To Continue");
+        System.out.println("Enter Anything To Continue");
         input.next();
     }
 
+    // Clears the console
+    // The way to detect the OS was found on Stack Overflow and the 2 ways of
+    // clearing the console were also found on Stack Overflow
     public final static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");

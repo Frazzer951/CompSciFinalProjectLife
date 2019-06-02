@@ -6,6 +6,8 @@
 import java.util.Scanner;
 
 public class House {
+
+    // Declares all variables
     private Person     p;
     private Scanner    input;
     private int        buyValue;
@@ -22,21 +24,15 @@ public class House {
     String[]           regularHouseList      = { "Villa", "Condominium", "Town House", "Cottage", "Log Cabin" };
     String[]           cheapHouseList        = { "Farm House", "Igloo" };
 
+    // Constructor for house class
     public House(Person p, Scanner input) {
         this.p     = p;
         this.input = input;
     }
 
-    /*
-     * public House(int bValue, int mortgage) { this.buyValue = bValue;
-     * this.yearlyHousePayment = mortgage; } public Apartment(int deposit, int
-     * yCharge) { this.initialDeposit = deposit; this.yearlyApartmentCharge =
-     * yCharge; }
-     */
-
     // Provides house options if 18+ with 3 homes, each at a different tier of
     // prices, and checks if they can afford it and if they can, they buy the house
-    // with responsibilties
+    // with responsibilities
     // Called upon at year end
     public void houseOptions() {
         if (p.getAge() >= 18) {
@@ -50,13 +46,13 @@ public class House {
 
             System.out.println("Here are your house options.");
             System.out.println("Choice 1: " + expensiveHouseList[option1] + " for $" + price1
-                    + " with an initial downpayment of " + price1 / 10.0 + " and a fixed yearly mortgage of "
+                    + " with an initial down payment of " + price1 / 10.0 + " and a fixed yearly mortgage of "
                     + ((price1 - price1 / 10) / 30) + " due at the end of each year");
             System.out.println("Choice 2: " + regularHouseList[option2] + " for $" + price2
-                    + " with an initial downpayment of " + price2 / 10.0 + " and a fixed yearly mortgage of "
+                    + " with an initial down payment of " + price2 / 10.0 + " and a fixed yearly mortgage of "
                     + ((price2 - price2 / 10) / 30) + " due at the end of each year");
             System.out.println("Choice 3: " + cheapHouseList[option3] + " for $" + price3
-                    + " with an initial downpayment of " + price3 / 10.0 + " and a fixed yearly mortgage of "
+                    + " with an initial down payment of " + price3 / 10.0 + " and a fixed yearly mortgage of "
                     + ((price3 - price3 / 10) / 30) + " due at the end of each year");
 
             System.out.println("Input the number for your choice 1-3 : ");
@@ -74,7 +70,7 @@ public class House {
                         madeChoice = true;
 
                     } else {
-                        System.out.println("You can't afford the downpayment on this house, try again another time");
+                        System.out.println("You can't afford the down payment on this house, try again another time");
                         madeChoice = true;
                     }
                 } else if (choice == 2) {
@@ -85,7 +81,7 @@ public class House {
                         buyHouse(price1 / 10);
                         madeChoice = true;
                     } else {
-                        System.out.println("You can't afford the downpayment on this house, try again another time");
+                        System.out.println("You can't afford the down payment on this house, try again another time");
                         madeChoice = true;
                     }
                 } else if (choice == 3) {
@@ -96,7 +92,7 @@ public class House {
                         buyHouse(price1 / 10);
                         madeChoice = true;
                     } else {
-                        System.out.println("You can't afford the downpayment on this house, try again another time");
+                        System.out.println("You can't afford the down payment on this house, try again another time");
                         madeChoice = true;
                     }
                 } else if (choice == 4) {
@@ -114,6 +110,9 @@ public class House {
 
     }
 
+    // Similar to house option, but it is cheaper.
+    // Instead of paying a yearly mortgage you pay a cheaper renting cost.
+    // You cant sell your apartment like you can your house
     public void apartmentOptions() {
         System.out.println("There is an apartment offered at a price of $" + yearlyApartmentCharge + " annually");
         System.out.println(
@@ -138,10 +137,12 @@ public class House {
         }
     }
 
+    // Adds amount of money until you have paid off your house
     public void downPayment(int amt) {
         amountPayed += amt;
     }
 
+    // Calculates how much you pay for your apartment/house
     public void payYearly() {
         if (house == true) {
             if (amountPayed == buyValue) {
@@ -165,7 +166,7 @@ public class House {
         p.removeMoney(payment);
         downPayment(payment);
         System.out.println(
-                "Congratulations! You bought a house and put a downpayment of :$" + payment + "down on the house.");
+                "Congratulations! You bought a house and put a down payment of :$" + payment + "down on the house.");
         house = true;
     }
 
@@ -178,7 +179,7 @@ public class House {
         apartment = true;
     }
 
-    // If they wish to sell the house they own they'll recieve 90% of the initial
+    // If they wish to sell the house they own they'll receive 90% of the initial
     // value
     public void sellHouse() {
         if (house == true) {
@@ -190,6 +191,7 @@ public class House {
         }
     }
 
+    // Ends apartment payments
     public void stopApartment() {
         if (apartment == true) {
             apartment = false;
@@ -225,10 +227,12 @@ public class House {
         }
     }
 
+    // Returns your house type
     public String getHouseType() {
         return houseType;
     }
 
+    // Tells the user how much they have paid for their home
     public void howMuchPaidOff() {
         System.out.println("You have paid $" + amountPayed + " out of " + buyValue + " on your house.");
 
