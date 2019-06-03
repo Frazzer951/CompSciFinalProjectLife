@@ -58,6 +58,7 @@ public class Jobs {
                     System.out.println("You got the job!");
                     jobIncome  = price1;
                     jobTitle   = jobList[choice1];
+                    employed   = true;
                     madeChoice = true;
                 } else {
                     System.out.println("You didn't get the job");
@@ -69,6 +70,7 @@ public class Jobs {
                     System.out.println("You got the job!");
                     jobIncome  = price2;
                     jobTitle   = jobList[choice2];
+                    employed   = true;
                     madeChoice = true;
                 } else {
                     System.out.println("You didn't get the job");
@@ -80,6 +82,7 @@ public class Jobs {
                     System.out.println("You got the job!");
                     jobIncome  = price3;
                     jobTitle   = jobList[choice3];
+                    employed   = true;
                     madeChoice = true;
                 } else {
                     System.out.println("You didn't get the job");
