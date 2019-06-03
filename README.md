@@ -23,4 +23,5 @@ Fix:
 
     Cant get apartment
     Investmnet fails if you put double
+    Seniors cant buy houses
     
