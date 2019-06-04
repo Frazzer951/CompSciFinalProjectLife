@@ -312,7 +312,7 @@ public class Story {
             if (dec.equals("Club")) {
                 int numShots = (int) Run.inBetween(7, 20);
                 System.out.println("You went to the club with your friends and drank " + numShots
-                        + " shot of tequila and threw up in the bathroom.");
+                        + " shots of tequila and threw up in the bathroom.");
                 int    hpLost   = (int) (numShots / .75);
                 double monSpent = numShots * 6.50;
                 int    hapGain  = numShots * (int) Run.inBetween(1, 4);

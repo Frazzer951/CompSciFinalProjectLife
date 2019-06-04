@@ -151,7 +151,7 @@ public class House {
                 p.removeMoney(yearlyHousePayment);
                 amountPayed += yearlyHousePayment;
                 System.out.println("You payed $" + yearlyHousePayment + " towards your home and you still have :"
-                        + (buyValue - amountPayed) + "left to pay on the mortgage");
+                        + (buyValue - amountPayed) + " left to pay on the mortgage");
             }
         } else if (apartment == true) {
             p.removeMoney(yearlyApartmentCharge);
