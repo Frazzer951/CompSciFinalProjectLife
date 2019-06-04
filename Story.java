@@ -362,6 +362,12 @@ public class Story {
                 return false;
             }
 
+            if (dec.equals("Apartment")) {
+                home.apartmentOptions();
+                Run.pause(input);
+                return false;
+            }
+
             if (dec.equals("NewPlace")) {
                 System.out.println("Are you sure?");
                 System.out.println("Yes or no");
