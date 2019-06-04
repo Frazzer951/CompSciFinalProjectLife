@@ -168,11 +168,11 @@ public class Story {
                 // Elder Choices
             } else {
 
-                if (home.hasHouse == false)
+                if (home.hasHouse() == false)
                 {
                     System.out.println("Would you like to buy a house or rent an apartment? type \'House\' or \'Aparment\'");
                 }
-                else if(home.hasHouse == true || home.hasApartment == true)
+                else if(home.hasHouse() == true || home.hasApartment() == true)
                 {
                     System.out.println("Would you like to sell your house or get out of an apartment lease? type \'NewPlace\'");
                     System.out.println("Would you like to see how much you've paid off? type \'CheckPayment\'");
