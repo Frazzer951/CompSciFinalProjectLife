@@ -54,7 +54,7 @@ public class House {
             System.out.println("Choice 3: " + cheapHouseList[option3] + " for $" + price3
                     + " with an initial down payment of " + price3 / 10.0 + " and a fixed yearly mortgage of "
                     + ((price3 - price3 / 10) / 30) + " due at the end of each year");
-            System.out.printkn("Choice 4: Exit without buying a house/apartment");
+            System.out.println("Choice 4: Exit without buying a house/apartment");
 
             System.out.println("Input the number for your choice 1-4 : ");
 
