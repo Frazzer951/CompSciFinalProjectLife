@@ -549,7 +549,7 @@ public class Story {
 
         System.out.println("or");
         System.out.println("It will cost $" + cashGhetto
-                + "to choose a sketchy hospital, BUT things may not go as planned... \n There is a " + chanceItsBad
+                + " to choose a sketchy hospital, BUT things may not go as planned... \n There is a " + chanceItsBad
                 + "% chance it will go wrong");
         System.out.println("Please type: \'safe\' or \'sketchy\' or \'none\'");
         String choice = input.next();
