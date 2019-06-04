@@ -166,7 +166,7 @@ public class House {
         p.removeMoney(payment);
         downPayment(payment);
         System.out.println(
-                "Congratulations! You bought a house and put a down payment of :$" + payment + "down on the house.");
+                "Congratulations! You bought a house and put a down payment of :$" + payment + " down on the house.");
         house = true;
     }
 
@@ -175,7 +175,7 @@ public class House {
     public void rentApartment() {
         p.removeMoney(initialDeposit);
         System.out.println("Congratulations! You rented an apartment and put in a non-refundable deposit of : $"
-                + initialDeposit + "down on the apartment");
+                + initialDeposit + " down on the apartment");
         apartment = true;
     }
 

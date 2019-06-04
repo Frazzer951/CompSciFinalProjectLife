@@ -16,5 +16,5 @@ TODO:
         [x] implement the house method so it can be used in the story class
         [x] Add More Random Chances
         [x] Add More Choices (Child Hood Is very Boring Now)
-        [] Comment on all the methods and class declaring what everything does
-        [] implement the year end by calculating the score and telling them why/how they lost.
+        [x] Comment on all the methods and class declaring what everything does
+        [x] Implement a quality suicide option

@@ -302,13 +302,15 @@ public class Story {
                         "You are reaching a state of depression. Would you like to kill yourself? \'1\' for yes, and \'0\' for no: ");
                 String suicide = input.next();
                 if (suicide.equals("1")) {
-                    int suicideOption = (int) Run.inBetween(1, 3);
+                    int suicideOption = (int) Run.inBetween(1, 4);
                     if (suicideOption == 1) {
                         dieString = "You couldn\'t take the pain anymore. You have decided to go outside and walk into oncoming traffic and get hit by a double-decker bus. You were sent to the hospital but didn\'t survive.";
                     } else if (suicideOption == 2) {
                         dieString = "You have decided to take the easy way out. You go to a local Walmart store and buy 10 feet of rope. You come back home and tie a noose on your ceiling fan. You kick off the chair you stand on and then suddenly everything goes black.";
                     } else if (suicideOption == 3) {
                         dieString = "You have made the choice to take the easy way out. You go to your kitchen and grab a chef knife from the drawer. You walk to your bathroom and sit in the tub. Tears fill your eyes as you do the deed of slitting your wrists until you are no more.";
+                    } else if (suicideOption == 4) {
+                        dieString = "The intense wave of depression has made you feel useless and like a waste of space. You take a trip to the nearest subway station and walk right onto the tracks. You face the train and see the light become brighter as it hits you with an intense impact breaking all of the bones in your body and taking your life away."
                     }
                     p.removeHealth(100);
                     chooseDie = true;
