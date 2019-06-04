@@ -54,8 +54,9 @@ public class House {
             System.out.println("Choice 3: " + cheapHouseList[option3] + " for $" + price3
                     + " with an initial down payment of " + price3 / 10.0 + " and a fixed yearly mortgage of "
                     + ((price3 - price3 / 10) / 30) + " due at the end of each year");
+            System.out.printkn("Choice 4: Exit without buying a house/apartment");
 
-            System.out.println("Input the number for your choice 1-3 : ");
+            System.out.println("Input the number for your choice 1-4 : ");
 
             boolean madeChoice = false;
 
@@ -96,8 +97,7 @@ public class House {
                         madeChoice = true;
                     }
                 } else if (choice == 4) {
-                    System.out.println("You have chosen to look at the apartment options");
-                    apartmentOptions();
+                    System.out.println("You chose not to buy a house");
                     madeChoice = true;
                 }
 
@@ -151,7 +151,7 @@ public class House {
                 p.removeMoney(yearlyHousePayment);
                 amountPayed += yearlyHousePayment;
                 System.out.println("You payed $" + yearlyHousePayment + " towards your home and you still have :"
-                        + (buyValue - amountPayed) + " left to pay on the mortgage");
+                        + (buyValue - amountPayed) + "left to pay on the mortgage");
             }
         } else if (apartment == true) {
             p.removeMoney(yearlyApartmentCharge);
