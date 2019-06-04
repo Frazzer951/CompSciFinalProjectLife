@@ -449,6 +449,10 @@ public class Story {
         p.addAge(1);
         p.removeHappiness((int) (p.getHappiness() * .05));
         this.setAgeGroup();
+
+        if (chooseDie) {
+            p.setHealth(0);
+        }
     }
 
     /*
