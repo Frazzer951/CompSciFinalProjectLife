@@ -26,7 +26,7 @@ public class Run {
         // Tells the player of a game mechanic then starts main loop
         // Starts by calling the year start, then it clears the console and calls year
         // end
-        System.out.println("Each year you lose 5% of your health");
+        System.out.println("Each year you lose 5% of your happiness");
         while (!life.gameOver()) {
             life.yearStart();
             clearConsole();
