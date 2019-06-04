@@ -254,7 +254,7 @@ public class Story {
                 if (answer.equals("1")) {
                     System.out.println(
                             "How much would you like to invest, you have $" + p.getBal() + " in your bank account");
-                    int amt = input.nextInt();
+                    double amt = input.nextDouble();
                     if (p.getBal() >= amt) {
                         p.removeMoney(amt);
                         invest(amt, chance);

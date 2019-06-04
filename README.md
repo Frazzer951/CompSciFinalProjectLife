@@ -18,10 +18,3 @@ TODO:
         [x] Add More Choices (Child Hood Is very Boring Now)
         [] Comment on all the methods and class declaring what everything does
         [] implement the year end by calculating the score and telling them why/how they lost.
-
-Fix:
-
-    Cant get apartment
-    Investmnet fails if you put double
-    Seniors cant buy houses
-    
