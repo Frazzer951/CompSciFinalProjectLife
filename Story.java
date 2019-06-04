@@ -159,11 +159,12 @@ public class Story {
                 }
 
                 if (home.hasHouse() == false) {
-                    System.out.println("Would you like to buy a house or rent an apartment? type \'House\'");
+                    System.out.println(
+                            "Would you like to buy a house or rent an apartment? type \'House\' or \'Apartment\'");
                 } else if (home.hasHouse() == true || home.hasApartment() == true) {
                     System.out.println(
                             "Would you like to sell your house or get out of an apartment lease? type \'NewPlace\'");
-                    System.out.println("Would you like to see how much you've paid off? type \'Check Payment\'");
+                    System.out.println("Would you like to see how much you've paid off? type \'CheckPayment\'");
                 }
                 if (p.getHealth() < 100) {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\'");
@@ -181,6 +182,15 @@ public class Story {
             } else {
 
                 System.out.println("If you want to invest your money type \'Invest\'");
+
+                if (home.hasHouse() == false) {
+                    System.out.println(
+                            "Would you like to buy a house or rent an apartment? type \'House\' or \'Apartment\'");
+                } else if (home.hasHouse() == true || home.hasApartment() == true) {
+                    System.out.println(
+                            "Would you like to sell your house or get out of an apartment lease? type \'NewPlace\'");
+                    System.out.println("Would you like to see how much you've paid off? type \'CheckPayment\'");
+                }
 
                 if (p.getHealth() < 100) {
                     System.out.println("Your health isn\'t at max, if you want to go to the hospital type \'Health\'");
@@ -362,6 +372,12 @@ public class Story {
                 return false;
             }
 
+            if (dec.equals("Apartment")) {
+                home.apartmentOptions();
+                Run.pause(input);
+                return false;
+            }
+
             if (dec.equals("NewPlace")) {
                 System.out.println("Are you sure?");
                 System.out.println("Yes or no");
@@ -433,6 +449,10 @@ public class Story {
         p.addAge(1);
         p.removeHappiness((int) (p.getHappiness() * .05));
         this.setAgeGroup();
+
+        if (chooseDie) {
+            p.setHealth(0);
+        }
     }
 
     /*
